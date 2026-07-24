@@ -1,11 +1,12 @@
 #!/bin/bash
 #
 # ═══════════════════════════════════════════════════════════════════
-#   ██ ███    ██ ████████ ███████ ██████  ███    ██ ████████ 
-#   ██ ████   ██    ██    ██      ██   ██ ████   ██    ██    
-#   ██ ██ ██  ██    ██    █████   ██████  ██ ██  ██    ██    
-#   ██ ██  ██ ██    ██    ██      ██   ██ ██  ██ ██    ██    
-#   ██ ██   ████    ██    ███████ ██   ██ ██   ████    ██    
+#  ██╗███╗   ██╗████████╗███████╗██████╗ ███╗   ██╗███████╗████████╗
+#  ██║████╗  ██║╚══██╔══╝██╔════╝██╔══██╗████╗  ██║██╔════╝╚══██╔══╝
+#  ██║██╔██╗ ██║   ██║   █████╗  ██████╔╝██╔██╗ ██║███████╗   ██║   
+#  ██║██║╚██╗██║   ██║   ██╔══╝  ██╔══██╗██║╚██╗██║╚════██║   ██║   
+#  ██║██║ ╚████║   ██║   ███████╗██║  ██║██║ ╚████║███████║   ██║   
+#  ╚═╝╚═╝  ╚═══╝   ╚═╝   ╚══════╝╚═╝  ╚═╝╚═╝  ╚═══╝╚══════╝   ╚═╝   
 # ═══════════════════════════════════════════════════════════════════
 #                 INTERNET KINGDOM - VPN SERVICE
 #               Support: https://t.me/FreeinternetTM
@@ -22,48 +23,39 @@ source /etc/os-release
 SUPPORT_LEVEL="unsupported"
 case "$ID:$VERSION_ID" in
   ubuntu:20.04) SUPPORT_LEVEL="legacy" ;;
-  ubuntu:22.04) SUPPORT_LEVEL="supported" ;;
-  ubuntu:24.04) SUPPORT_LEVEL="recommended" ;;
-  ubuntu:26.04) SUPPORT_LEVEL="latest" ;;
+  ubuntu:22.04) SUPPORT_LEVEL="recommended" ;;
+  ubuntu:24.04) SUPPORT_LEVEL="supported" ;;
   debian:11) SUPPORT_LEVEL="legacy" ;;
   debian:12) SUPPORT_LEVEL="supported" ;;
   *) SUPPORT_LEVEL="unsupported" ;;
 esac
 
-echo "╔══════════════════════════════════════════════════════════════╗"
-echo "║                                                              ║"
-echo "║    ██╗███╗   ██╗████████╗███████╗██████╗ ███╗   ██╗███████╗██╗  ║"
-echo "║    ██║████╗  ██║╚══██╔══╝██╔════╝██╔══██╗████╗  ██║██╔════╝██║  ║"
-echo "║    ██║██╔██╗ ██║   ██║   █████╗  ██████╔╝██╔██╗ ██║███████╗██║  ║"
-echo "║    ██║██║╚██╗██║   ██║   ██╔══╝  ██╔══██╗██║╚██╗██║╚════██║██║  ║"
-echo "║    ██║██║ ╚████║   ██║   ███████╗██║  ██║██║ ╚████║███████║██████╗║"
-echo "║    ╚═╝╚═╝  ╚═══╝   ╚═╝   ╚══════╝╚═╝  ╚═╝╚═╝  ╚═══╝╚══════╝╚═════╝║"
-echo "║                                                              ║"
-echo "║              INTERNET KINGDOM - VPN SERVICE                  ║"
-echo "║              Support: https://t.me/FreeinternetTM            ║"
-echo "║                                                              ║"
-echo "╚══════════════════════════════════════════════════════════════╝"
+echo "============================================================"
+echo "              INTERNET KINGDOM SSH Auto Script"
+echo "        (AutoScript: SSH/Xray/Hysteria/ZiVPN/UDP Custom)"
+echo "============================================================"
 echo ""
-echo "  ╔═══════════════════════════════════════════════════════════╗"
-echo "  ║                    SUPPORTED OS                          ║"
-echo "  ╠═══════════════════════════════════════════════════════════╣"
-echo "  ║  ✔ Ubuntu 26.04            (Latest)                     ║"
-echo "  ║  ✔ Ubuntu 24.04            (Recommended)                ║"
-echo "  ║  ✔ Ubuntu 22.04            (Supported)                  ║"
-echo "  ║  ✔ Ubuntu 20.04            (Legacy)                     ║"
-echo "  ║  ✔ Debian 12               (Supported)                  ║"
-echo "  ║  ✔ Debian 11               (Legacy)                     ║"
-echo "  ╚═══════════════════════════════════════════════════════════╝"
+echo "Supported Operating Systems:"
 echo ""
+echo "  ✔ Debian 12              (Recommended)"
+echo "  ✔ Debian 11              (Legacy Support)"
+echo "  ✔ Ubuntu 24.04           (Supported)"
+echo "  ✔ Ubuntu 22.04           (Recommended)"
+echo "  ✔ Ubuntu 20.04           (Legacy Support)"
+echo ""
+echo "============================================================"
+echo "              INTERNET KINGDOM"
+echo "         Support: https://t.me/FreeinternetTM"
+echo "============================================================"
 sleep 2
 
 if [ "$SUPPORT_LEVEL" = "unsupported" ]; then
-  echo "  ❌ Unsupported OS: ${ID} ${VERSION_ID}"
-  echo "  This installer supports Ubuntu 20.04/22.04/24.04/26.04 and Debian 11/12."
+  echo "This installer only supports Ubuntu 20.04/22.04/24.04 and Debian 11/12."
+  echo "Detected: ${ID} ${VERSION_ID}"
   exit 1
 fi
 
-read -p "  Enter your domain/subdomain for Xray (or press Enter to use IP): " -e -i "$(curl -4 -s --max-time 2 ipv4.icanhazip.com || hostname -I | awk '{print $1}')" DOMAIN
+read -p "Enter your Domain/Subdomain for Xray (or press enter to use IP): " -e -i "$(curl -4 -s --max-time 2 ipv4.icanhazip.com || hostname -I | awk '{print $1}')" DOMAIN
 export DOMAIN
 
 apt-get update -y >/dev/null 2>&1
@@ -73,36 +65,32 @@ command -v certbot >/dev/null 2>&1 || apt-get install -y certbot >/dev/null 2>&1
 mkdir -p /etc/xray
 if [[ "$DOMAIN" =~ ^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
     USE_LETSENCRYPT=false
-    echo "  Using self-signed certificate for IP $DOMAIN."
-    echo "  Clients must enable 'allowInsecure' for TLS on port 443."
+    echo "A self-signed certificate will be used for IP $DOMAIN."
+    echo "Clients must enable 'allowInsecure' for TLS on port 443."
 else
     USE_LETSENCRYPT=true
-    echo "  Checking that domain $DOMAIN resolves to server IP..."
+    echo "Verifying that domain $DOMAIN resolves to server IP..."
     SERVER_IP=$(curl -4 -s --max-time 2 ipv4.icanhazip.com || hostname -I | awk '{print $1}')
     DOMAIN_IP=$(dig +short "$DOMAIN" @8.8.8.8 | tail -1)
     if [ "$DOMAIN_IP" != "$SERVER_IP" ]; then
-        echo "  ⚠️ Warning: Domain $DOMAIN does not point to IP $SERVER_IP."
-        echo "  ⚠️ Using self-signed certificate instead of Let's Encrypt."
-        USE_LETSENCRYPT=false
-        DOMAIN="$SERVER_IP"
-        echo "  ✅ Using IP: $DOMAIN"
-    else
-        echo "  Domain verified. Requesting Let's Encrypt certificate..."
-        systemctl stop xray 2>/dev/null || true
-        systemctl stop nginx 2>/dev/null || true
-        if ! certbot certonly --standalone --non-interactive --agree-tos --email "admin@$DOMAIN" -d "$DOMAIN"; then
-            echo "  ⚠️ Let's Encrypt certificate failed, using self-signed."
-            USE_LETSENCRYPT=false
-        else
-            CERT_PATH="/etc/letsencrypt/live/$DOMAIN/fullchain.pem"
-            KEY_PATH="/etc/letsencrypt/live/$DOMAIN/privkey.pem"
-            echo "letsencrypt" > /etc/xray/cert_type
-        fi
+        echo "ERROR: Domain $DOMAIN does not point to IP $SERVER_IP."
+        echo "       Create an A record in your DNS and run the script again."
+        exit 1
     fi
+    echo "Domain verified. Requesting Let's Encrypt certificate..."
+    systemctl stop xray 2>/dev/null || true
+    systemctl stop nginx 2>/dev/null || true
+    if ! certbot certonly --standalone --non-interactive --agree-tos --email "admin@$DOMAIN" -d "$DOMAIN"; then
+        echo "ERROR: Could not issue Let's Encrypt certificate for $DOMAIN."
+        exit 1
+    fi
+    CERT_PATH="/etc/letsencrypt/live/$DOMAIN/fullchain.pem"
+    KEY_PATH="/etc/letsencrypt/live/$DOMAIN/privkey.pem"
+    echo "letsencrypt" > /etc/xray/cert_type
 fi
 
 if [ "$USE_LETSENCRYPT" = false ]; then
-    echo "  Generating self-signed certificate for IP $DOMAIN..."
+    echo "Generating self-signed certificate for IP $DOMAIN..."
     openssl req -x509 -nodes -days 3650 -newkey rsa:2048 \
       -keyout /etc/xray/xray.key \
       -out /etc/xray/xray.crt \
@@ -133,25 +121,25 @@ WsPort='10080'
 
 MainPort='666'
 
-read -p "  Enter SlowDNS Nameserver (or press Enter for default): " -e -i "ns-miami.hexapps.app" Nameserver
+read -p "Enter SlowDNS Nameserver (or press enter for default): " -e -i "ns-miami.hexapps.app" Nameserver
 Serverkey='819d82813183e4be3ca1ad74387e47c0c993b81c601b2d1473a3f47731c404ae'
 Serverpub='7fbd1f8aa0abfe15a7903e837f78aba39cf61d36f183bd604daa2fe4ef3b7b59'
 
 SlowDNS_Internal_Port='5301'
-read -p "  Install SlipStream (additional DNS tunnel)? [y/N]: " -e -i "N" _install_slipstream
+read -p "Do you want to install SlipStream (additional DNS tunnel)? [y/N]: " -e -i "N" _install_slipstream
 if [[ "$_install_slipstream" =~ ^[Yy]$ ]]; then
     InstallSlipstream="y"
-    read -p "  Enter SlipStream domain/nameserver (or press Enter for default): " -e -i "ns2-miami.hexapps.app" SlipstreamDomain
+    read -p "Enter SlipStream domain/nameserver (or press enter for default): " -e -i "ns2-miami.hexapps.app" SlipstreamDomain
     while [ "$SlipstreamDomain" = "$Nameserver" ]; do
-        echo -e "\n  \e[1;31m✘ Slipstream domain cannot equal SlowDNS Nameserver.\e[0m"
-        echo -e "  dnsdist routes by domain; if equal, one tunnel will break."
-        echo -e "  Use a different domain (e.g., ss.${Nameserver} instead of ${Nameserver}).\n"
-        read -p "  Enter different domain for SlipStream: " -e -i "ss.$Nameserver" SlipstreamDomain
+        echo -e "\n\e[1;31m✘ Slipstream domain cannot equal SlowDNS Nameserver.\e[0m"
+        echo -e "  dnsdist routes by domain; if equal, one tunnel will be left without traffic."
+        echo -e "  Use a different subdomain (e.g., ss.${Nameserver} instead of ${Nameserver}).\n"
+        read -p "Enter a different domain for SlipStream: " -e -i "ss.$Nameserver" SlipstreamDomain
     done
 else
     InstallSlipstream="n"
     SlipstreamDomain=""
-    echo -e "  Skipped SlipStream. You can install later from menu: Advanced > Install SlipStream."
+    echo -e "  SlipStream skipped. You can install it later from the menu: Advanced Settings > Install SlipStream."
 fi
 SlipstreamPinnedCommit='bc772dd07d9a136dbd7553b0da575526de207847'
 SlipstreamInstallDir='/opt/slipstream-rust'
@@ -167,9 +155,9 @@ _default_obfs='HexTunnel'
 _default_password='HexTunnel'
 
 if [ -t 0 ]; then
-  read -e -p "  Enter Hysteria/ZiVPN Obfuscation (obfs) [${_default_obfs}]: " -i "${_default_obfs}" _input_obfs
+  read -e -p "Enter Hysteria/ZiVPN Obfuscation (obfs) [${_default_obfs}]: " -i "${_default_obfs}" _input_obfs
   OBFS="${_input_obfs:-${_default_obfs}}"
-  read -e -p "  Enter default UDP password [${_default_password}]: " -i "${_default_password}" _input_pass
+  read -e -p "Enter default UDP password [${_default_password}]: " -i "${_default_password}" _input_pass
   PASSWORD="${_input_pass:-${_default_password}}"
 else
   OBFS="${OBFS:-${_default_obfs}}"
@@ -227,7 +215,7 @@ PACKAGE_LIST=(
   apt-transport-https software-properties-common gnupg2 ca-certificates curl net-tools
   nginx haproxy certbot jq figlet git gcc make build-essential perl expect libdbi-perl vnstat socat
   libnet-ssleay-perl libauthen-pam-perl libio-pty-perl apt-show-versions openssh-server rsyslog lsof procps
-  cmake pkg-config libssl-dev dante-server dnsdist speedtest-cli
+  cmake pkg-config libssl-dev dante-server dnsdist
 )
 
 AVAILABLE_PACKAGES=()
@@ -263,14 +251,43 @@ rm -rf webmin_2.111_all.deb
 sed -i 's|ssl=1|ssl=0|g' /etc/webmin/miniserv.conf
 systemctl restart webmin || true
 
-cat <<'deekay77' > /etc/zorro-luffy
-<br><font color="#C12267">INTERNET KINGDOM | VPN | SERVICE<br></font><br>
-<font color="#b3b300"> x DDOS Forbidden<br></font>
-<font color="#00cc00"> x Torrent Forbidden<br></font>
-<font color="#ff1aff"> x Spam Forbidden<br></font>
-<font color="#A810FF"> x Hacking Forbidden<br></font><br>
-<font color="red">• Created by <br></font><font color="#00cccc">https://t.me/FreeinternetTM<br></font>
-deekay77
+# ============================================================
+# 🚀 NEW BANNER - INTERNET KINGDOM
+# ============================================================
+cat > /etc/zorro-luffy << 'ENDOFFILE'
+╔══════════════════════════════════════════════════════════════╗
+║                                                              ║
+║   ██╗███╗   ██╗████████╗███████╗██████╗ ███╗   ██╗███████╗██╗
+║   ██║████╗  ██║╚══██╔══╝██╔════╝██╔══██╗████╗  ██║██╔════╝██║
+║   ██║██╔██╗ ██║   ██║   █████╗  ██████╔╝██╔██╗ ██║███████╗██║
+║   ██║██║╚██╗██║   ██║   ██╔══╝  ██╔══██╗██║╚██╗██║╚════██║██║
+║   ██║██║ ╚████║   ██║   ███████╗██║  ██║██║ ╚████║███████║██████╗
+║   ╚═╝╚═╝  ╚═══╝   ╚═╝   ╚══════╝╚═╝  ╚═╝╚═╝  ╚═══╝╚══════╝╚═════╝
+║                                                              ║
+║              INTERNET KINGDOM - VPN SERVICE                  ║
+║              Support: https://t.me/FreeinternetTM            ║
+║                                                              ║
+╠══════════════════════════════════════════════════════════════╣
+║  ♧ UDP V2RAY SLOWDNS ♧                                      ║
+║  📨 Telegram | 🎮 Free Fire | 👥 TikTok | 🌐 Facebook       ║
+║  📺 TV Online | ❤️ YouTube | 📹 Video Call Support          ║
+╠══════════════════════════════════════════════════════════════╣
+║  🇲🇦 Morocco Win by Inwi 📳                                  ║
+║  🇲🇦 Morocco Inwi*6 👾                                      ║
+║  🇲🇦 Morocco Orange*6 🎃                                    ║
+║  🇲🇦 Morocco IAM 0DH 🌐                                     ║
+╠══════════════════════════════════════════════════════════════╣
+║  🔗 WhatsApp Channel:                                       ║
+║  https://whatsapp.com/channel/0029Va6Fdf3JuyAAAil4T12P      ║
+╠══════════════════════════════════════════════════════════════╣
+║  ♡ ㅤ  ❍ㅤ      ⎙ㅤ     ⌲                                  ║
+║  ˡᶦᵏᵉ  ᶜᵒᵐᵐᵉⁿᵗ   ˡⁱⁿᵏ    ˢʰᵃʳᵉ                         ║
+║  ║█ BY INTERNET KINGDOM █║                                 ║
+╠══════════════════════════════════════════════════════════════╣
+║  📢 Telegram Channel: https://t.me/FreeinternetTM          ║
+║  💬 Telegram Chat: https://t.me/Bt5TM                      ║
+╚══════════════════════════════════════════════════════════════╝
+ENDOFFILE
 
 
 # OpenSSH
@@ -398,7 +415,7 @@ service
 systemctl daemon-reload
 for port in "${WsPorts[@]}"; do systemctl enable ws-proxy@$port; systemctl restart ws-proxy@$port; done
 
-echo "  Installing Xray Core version v26.3.27 (Hiddify compatible)..."
+echo "Installing Hiddify-aligned stable Xray Core v26.3.27..."
 XRAY_VER="v26.3.27"
 
 cat <<'EOF_XRAY_INSTALLER' > /usr/local/sbin/xray-install-version
@@ -412,25 +429,25 @@ case "$(uname -m)" in
   i386|i486|i586|i686) asset="Xray-linux-32.zip" ;;
   aarch64|arm64) asset="Xray-linux-arm64-v8a.zip" ;;
   armv7l|armv7*) asset="Xray-linux-arm32-v7a.zip" ;;
-  *) echo "Unsupported architecture for Xray: $(uname -m)" >&2; exit 1 ;;
+  *) echo "Unsupported Xray architecture: $(uname -m)" >&2; exit 1 ;;
 esac
 
 tmp_dir=$(mktemp -d /tmp/xray-install.XXXXXX) || exit 1
 trap 'rm -rf "$tmp_dir"' EXIT
 base_url="https://github.com/XTLS/Xray-core/releases/download/${version}/${asset}"
 
-wget -qO "$tmp_dir/xray.zip" "$base_url" || { echo "Failed to download Xray." >&2; exit 1; }
-wget -qO "$tmp_dir/xray.zip.dgst" "$base_url.dgst" || { echo "Failed to download Xray digest." >&2; exit 1; }
+wget -qO "$tmp_dir/xray.zip" "$base_url" || { echo "Xray download failed." >&2; exit 1; }
+wget -qO "$tmp_dir/xray.zip.dgst" "$base_url.dgst" || { echo "Xray digest download failed." >&2; exit 1; }
 expected=$(awk -F'= *' 'toupper($1) == "SHA2-256" {print tolower($2); exit}' "$tmp_dir/xray.zip.dgst")
 actual=$(sha256sum "$tmp_dir/xray.zip" | awk '{print tolower($1)}')
 [ -n "$expected" ] && [ "$actual" = "$expected" ] || { echo "Xray SHA-256 verification failed." >&2; exit 1; }
 
 unzip -q "$tmp_dir/xray.zip" -d "$tmp_dir/unpacked" || exit 1
-[ -f "$tmp_dir/unpacked/xray" ] || { echo "Xray binary not found in archive." >&2; exit 1; }
+[ -f "$tmp_dir/unpacked/xray" ] || { echo "Xray binary missing from archive." >&2; exit 1; }
 chmod 755 "$tmp_dir/unpacked/xray"
 if [ -s /etc/xray/config.json ]; then
   "$tmp_dir/unpacked/xray" run -test -config /etc/xray/config.json || {
-    echo "Downloaded Xray version rejected current config." >&2
+    echo "The downloaded Xray version rejected the current configuration." >&2
     exit 1
   }
 fi
@@ -440,7 +457,7 @@ EOF_XRAY_INSTALLER
 chmod 700 /usr/local/sbin/xray-install-version
 
 if ! /usr/local/sbin/xray-install-version "$XRAY_VER"; then
-  echo "Failed to install trusted Xray Core version ${XRAY_VER}."
+  echo "Unable to install a verified Xray Core ${XRAY_VER} binary."
   exit 1
 fi
 
@@ -661,7 +678,7 @@ chmod 600 /etc/xray/config.json
 
 mkdir -p /var/log/xray
 if ! /usr/local/bin/xray run -test -config /etc/xray/config.json; then
-  echo "Xray configuration validation failed. Check error above."
+  echo "Xray configuration validation failed. Review the Xray error printed above."
   exit 1
 fi
 
@@ -718,6 +735,9 @@ frontend public_tls_443
     acl h1_vless_ws req.payload(0,500) -m reg /vless
     acl clear_ssh req.payload(0,4) -m str SSH-
 
+    # Do not accept generic HTTP as soon as its method is visible. Wait until
+    # the complete VLESS path is buffered, otherwise /vless falls through to
+    # the generic SSH WebSocket proxy.
     tcp-request inspect-delay 5s
     tcp-request content accept if h2_preface
     tcp-request content accept if h1_vless_xhttp
@@ -728,6 +748,7 @@ frontend public_tls_443
 
     use_backend h2_dispatch if negotiated_h2 h2_preface
 
+    # Specific paths must precede the shorter WebSocket path.
     use_backend vless_xhttp_h1 if h1_vless_xhttp
     use_backend vless_httpupgrade if h1_vless_httpupgrade
     use_backend vless_tcp_http if h1_vless_tcp
@@ -746,6 +767,7 @@ frontend h2_router
     bind 127.0.0.1:10444 accept-proxy
     mode http
 
+    # Match specific HTTP/2 transports first.
     use_backend vless_grpc_h2 if { path_beg /grpc-svc }
     use_backend vless_xhttp_h2 if { path_beg /xhttp }
     use_backend vless_httpupgrade if { path_beg /httpupgrade }
@@ -798,6 +820,12 @@ systemctl enable "$HAPROXY_SERVICE"
 systemctl restart "$HAPROXY_SERVICE"
 fi
 
+# Internal-only HTTP/2 router. Xray terminates TLS/ALPN on port 443 and,
+# for any connection that negotiates ALPN=h2 (gRPC and XHTTP for VLESS/VMess,
+# which travel as real HTTP/2 and CANNOT be dispatched by "path" in Xray's
+# native fallback -- see https://github.com/XTLS/Xray-core/issues/3493),
+# forwards it here. HAProxy can parse real HTTP/2 and dispatch by :path
+# to the corresponding Xray internal inbound.
 cat <<'EOF_H2_ROUTER' > /etc/haproxy/haproxy.cfg
 global
     log /dev/log local0
@@ -857,6 +885,7 @@ systemctl daemon-reload
 systemctl enable haproxy
 systemctl restart haproxy
 
+# USER EXPIRY CRONJOB FOR XRAY
 cat <<'EOF_EXP' > /usr/local/bin/exp-check
 #!/bin/bash
 set -o pipefail
@@ -866,7 +895,7 @@ CONFIG="/etc/xray/config.json"
 [ -s "$CONFIG" ] || exit 0
 
 exec 9>/run/lock/xray-config.lock
-flock -w 30 9 || { logger -t xray-exp "Xray config lock timed out"; exit 1; }
+flock -w 30 9 || { logger -t xray-exp "Timed out waiting for the Xray config lock"; exit 1; }
 
 work_dir=$(mktemp -d /tmp/xray-exp.XXXXXX) || exit 1
 trap 'rm -rf "$work_dir"' EXIT
@@ -888,7 +917,7 @@ jq --argjson expired "$expired_json" '
 ' "$CONFIG" > "$work_dir/config.json" || exit 1
 
 if ! /usr/local/bin/xray run -test -config "$work_dir/config.json" >/dev/null 2>&1; then
-  logger -t xray-exp "Rejected expiry update: Xray config validation failed"
+  logger -t xray-exp "Refusing expiry update: generated Xray config failed validation"
   exit 1
 fi
 
@@ -897,7 +926,7 @@ install -m 600 "$work_dir/config.json" "$CONFIG" || exit 1
 if ! systemctl restart xray; then
   install -m 600 "$work_dir/config.backup" "$CONFIG"
   systemctl restart xray || true
-  logger -t xray-exp "Rolled back expiry update because Xray failed to restart"
+  logger -t xray-exp "Expiry update rolled back because Xray failed to restart"
   exit 1
 fi
 
@@ -911,6 +940,7 @@ EOF_EXP
 chmod +x /usr/local/bin/exp-check
 echo "0 0 * * * root /usr/local/bin/exp-check >/dev/null 2>&1" > /etc/cron.d/xray-expiry
 
+# USER EXPIRY CRONJOB FOR HYSTERIA
 cat <<'EOF_HYST_EXP' > /usr/local/bin/hysteria-exp
 #!/bin/bash
 now=$(date +%Y-%m-%d)
@@ -919,14 +949,18 @@ CONFIG="/etc/hysteria/config.json"
 changed=0
 
 if [ -f "$USER_DB" ]; then
+  # Read expired users into an array securely to avoid modifying the file while reading it
   mapfile -t expired_users < <(awk -v d="$now" '$2 < d {print $1}' "$USER_DB")
 
   for user in "${expired_users[@]}"; do
+    # Remove from JSON config
     jq ".inbounds[0].users |= map(select(.auth_str != \"$user\"))" "$CONFIG" > /tmp/h.json && mv /tmp/h.json "$CONFIG"
+    # Remove from TXT DB
     sed -i "/^$user /d" "$USER_DB"
     changed=1
   done
 
+  # Only restart the UDP core if an account was actually scrubbed
   if [ "$changed" -eq 1 ]; then
     systemctl restart hysteria-server
   fi
@@ -936,6 +970,7 @@ EOF_HYST_EXP
 chmod +x /usr/local/bin/hysteria-exp
 echo "0 0 * * * root /usr/local/bin/hysteria-exp >/dev/null 2>&1" > /etc/cron.d/hysteria-expiry
 
+# USER EXPIRY CRONJOB FOR HYSTERIA 2
 cat <<'EOF_HYST2_EXP' > /usr/local/bin/hysteria2-exp
 #!/bin/bash
 now=$(date +%Y-%m-%d)
@@ -949,6 +984,7 @@ EOF_HYST2_EXP
 chmod 755 /usr/local/bin/hysteria2-exp
 echo "5 0 * * * root /usr/local/bin/hysteria2-exp >/dev/null 2>&1" > /etc/cron.d/hysteria2-expiry
 
+# USER EXPIRY CRONJOB FOR ZIVPN
 cat <<'EOF_ZIVPN_EXP' > /usr/local/bin/zivpn-exp
 #!/bin/bash
 now=$(date +%Y-%m-%d)
@@ -970,6 +1006,7 @@ EOF_ZIVPN_EXP
 chmod +x /usr/local/bin/zivpn-exp
 echo "0 0 * * * root /usr/local/bin/zivpn-exp >/dev/null 2>&1" > /etc/cron.d/zivpn-expiry
 
+# Nginx & Squid
 rm -rf /home/vps/public_html /etc/nginx/sites-* /etc/nginx/nginx.conf; mkdir -p /home/vps/public_html
 cat <<'myNginxC' > /etc/nginx/nginx.conf
 user www-data; worker_processes auto; pid /var/run/nginx.pid;
@@ -996,6 +1033,7 @@ mySquid
 sed -i "s|IP-ADDRESS|$IPADDR|g" /etc/squid/squid.conf; sed -i "s|Squid_Port1|$Squid_Port1|g" /etc/squid/squid.conf; sed -i "s|Squid_Port2|$Squid_Port2|g" /etc/squid/squid.conf
 systemctl restart "$SQUID_SERVICE"
 
+# Health Checks
 mkdir -p /etc/deekayvpn/health
 cat <<'ServiceChecker' > /etc/deekayvpn/service_checker.sh
 #!/bin/bash
@@ -1010,7 +1048,7 @@ restart_after_3_fails() {
     local fails=$(mark_fail "$1")
     if [ "$fails" -ge 3 ]; then
         systemctl restart "$2" >/dev/null 2>&1
-        send_telegram_message "Service *$2* was disconnected or lost port(s) *$3* on server *${IPCOUNTRY}* ($server_ip). Restarted automatically at *${datenow}*."
+        send_telegram_message "Service *$2* was offline or missing port(s) *$3* on server *${IPCOUNTRY}* ($server_ip). It has been auto-restarted at *${datenow}*."
         clear_fail "$1"
     fi
 }
@@ -1070,16 +1108,20 @@ chown root:root /var/log; chmod 755 /var/log; chown syslog:adm /var/log/syslog; 
 echo "*/5 * * * * root /usr/sbin/logrotate -v -f /etc/logrotate.d/rsyslog >/dev/null 2>&1" > /etc/cron.d/logrotate
 echo "0 3 * * * root sync; echo 3 > /proc/sys/vm/drop_caches" > /etc/cron.d/drop-cache
 
+# ==========================================
+# AGGRESSIVE SYSTEM & CONNTRACK TUNING
+# ==========================================
+# Force load nf_conntrack module
 modprobe nf_conntrack 2>/dev/null || true; echo "nf_conntrack" > /etc/modules-load.d/freenet.conf
 cat <<'SYSCTL' > /etc/sysctl.d/99-freenet-tuning.conf
-# File descriptors
+# File Descriptors
 fs.file-max = 1048576
 
-# Network kernel
+# Network Core
 net.core.somaxconn = 65535
 net.core.netdev_max_backlog = 16384
 
-# TCP settings
+# TCP Settings
 net.ipv4.ip_local_port_range = 1024 65000
 net.ipv4.tcp_max_syn_backlog = 8192
 net.ipv4.tcp_fin_timeout = 15
@@ -1088,11 +1130,11 @@ net.ipv4.tcp_keepalive_time = 600
 net.ipv4.tcp_keepalive_intvl = 60
 net.ipv4.tcp_keepalive_probes = 10
 
-# Local loopback SOCKS / WARP optimization
+# SOCKS / WARP Local Loopback Optimization
 net.ipv4.tcp_window_scaling = 1
 net.ipv4.tcp_mtu_probing = 1
 
-# Connection tracking limits (prevents silent drops)
+# Connection Tracking Limits (Prevents silent drops)
 net.netfilter.nf_conntrack_max = 2097152
 net.netfilter.nf_conntrack_tcp_timeout_established = 1200
 net.netfilter.nf_conntrack_udp_timeout = 60
@@ -1106,6 +1148,7 @@ root soft nofile 1048576
 root hard nofile 1048576
 LIMITS
 
+# SLOWDNS
 rm -rf /etc/slowdns; mkdir -m 777 /etc/slowdns
 cat > /etc/slowdns/server.key << END
 $Serverkey
@@ -1124,7 +1167,7 @@ else
 fi
 cat > /etc/systemd/system/server-sldns.service << END
 [Unit]
-Description=SlowDNS Server
+Description=Server SlowDNS
 After=network.target
 [Service]
 ExecStart=/etc/slowdns/sldns-server -udp $SlowDNS_Listen -privkey-file /etc/slowdns/server.key $Nameserver 127.0.0.1:$SSH_Port2
@@ -1134,8 +1177,10 @@ WantedBy=multi-user.target
 END
 systemctl daemon-reload; systemctl enable server-sldns; systemctl restart server-sldns
 
+# === SLIPSTREAM (second DNS tunnel) + DANTE SOCKS + DNSDIST (multiplexer on :53) — OPTIONAL ===
 if [ "$InstallSlipstream" = "y" ]; then
 
+# Dante SOCKS: generic backend to which Slipstream forwards decrypted traffic
 command -v danted >/dev/null 2>&1 || apt-get install -y dante-server
 EXT_IP="$(ip -4 addr show scope global 2>/dev/null | awk '/inet/{print $2}' | cut -d/ -f1 | head -1)"
 [ -z "$EXT_IP" ] && EXT_IP="$(curl -s --max-time 5 ifconfig.me 2>/dev/null)"
@@ -1161,6 +1206,7 @@ socks pass {
 DANTE_EOF
 systemctl restart danted; systemctl enable danted >/dev/null 2>&1
 
+# Rust (required to compile slipstream-server)
 if ! command -v cargo &>/dev/null; then
   curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y >/dev/null 2>&1
   source "$HOME/.cargo/env"
@@ -1168,6 +1214,7 @@ else
   source "$HOME/.cargo/env" 2>/dev/null || true
 fi
 
+# Clone and compile slipstream-server (pinned commit)
 if [ -d "$SlipstreamInstallDir/.git" ]; then
   cd "$SlipstreamInstallDir"
 else
@@ -1181,6 +1228,7 @@ git submodule update --init --recursive --quiet
 cargo build --release -p slipstream-server --quiet 2>&1
 cd /root
 
+# Slipstream systemd service, forwarding to Dante SOCKS instead of direct SSH
 cat > /etc/systemd/system/slipstream.service <<SLIPSTREAM_EOF
 [Unit]
 Description=Slipstream DNS Tunnel Server
@@ -1204,6 +1252,7 @@ LimitNOFILE=65535
 WantedBy=multi-user.target
 SLIPSTREAM_EOF
 systemctl daemon-reload; systemctl enable slipstream >/dev/null 2>&1; systemctl restart slipstream
+# dnsdist: public multiplexer on :53, routes by domain to SlowDNS and Slipstream
 command -v dnsdist >/dev/null 2>&1 || apt-get install -y dnsdist
 mkdir -p "$(dirname "$DnsdistConf")"
 cat > "$DnsdistConf" <<DNSDIST_EOF
@@ -1223,7 +1272,10 @@ DNSDIST_EOF
 systemctl daemon-reload; systemctl enable dnsdist >/dev/null 2>&1; systemctl restart dnsdist
 
 fi
+# === END OF SLIPSTREAM OPTIONAL BLOCK ===
 
+
+# === HYSTERIA v1 (Sing-box v1.12.22) & CLOUDFLARE WARP ===
 curl -fsSL https://pkg.cloudflareclient.com/pubkey.gpg | gpg --yes --dearmor --output /usr/share/keyrings/cloudflare-warp-archive-keyring.gpg
 echo "deb [signed-by=/usr/share/keyrings/cloudflare-warp-archive-keyring.gpg] https://pkg.cloudflareclient.com/ $(lsb_release -cs) main" | tee /etc/apt/sources.list.d/cloudflare-client.list
 apt-get update && apt-get install -y cloudflare-warp
@@ -1245,6 +1297,47 @@ mkdir -p /etc/hysteria
 HYST_PORT="${UDP_PORT##*:}"
 
 cat << EOF > /etc/hysteria/hysteria.crt
+Certificate:
+    Data:
+        Version: 3 (0x2)
+        Serial Number: 40:26:da:91:18:2b:77:9c:85:6a:0c:bb:ca:90:53:fe
+        Signature Algorithm: sha256WithRSAEncryption
+        Issuer: CN=KobZ
+        Validity
+            Not Before: Jul 22 22:23:55 2020 GMT
+            Not After : Jul 20 22:23:55 2030 GMT
+        Subject: CN=server
+        Subject Public Key Info:
+            Public Key Algorithm: rsaEncryption
+                RSA Public-Key: (1024 bit)
+                Modulus:
+                    00:ce:35:23:d8:5d:9f:b6:9b:cb:6a:89:e1:90:af:
+                    42:df:5f:f8:bd:ad:a7:78:9a:ca:20:f0:3d:5b:d6:
+                    c9:ef:4c:4a:99:96:c3:38:fd:59:b4:d7:65:ed:d4:
+                    a7:fa:ab:03:e2:be:88:2f:ca:fc:90:dd:b0:b7:bc:
+                    23:cb:83:ac:36:e2:01:57:69:64:b8:e1:9e:51:f0:
+                    a6:9d:13:d9:92:6b:4d:04:a6:10:64:a3:3f:6b:ff:
+                    fe:32:ac:91:63:c2:71:24:be:9e:76:4f:87:cc:3a:
+                    03:a1:9e:48:3f:11:92:33:3b:19:16:9c:d0:5d:16:
+                    ee:c1:42:67:99:47:66:67:67
+                Exponent: 65537 (0x10001)
+        X509v3 extensions:
+            X509v3 Basic Constraints: CA:FALSE
+            X509v3 Subject Key Identifier: 6B:08:C0:64:10:71:A8:32:7F:0B:FE:1E:98:1F:BD:72:74:0F:C8:66
+            X509v3 Authority Key Identifier: keyid:64:49:32:6F:FE:66:62:F1:57:4D:BB:91:A8:5D:BD:26:3E:51:A4:D2
+                DirName:/CN=KobZ
+                serial:01:A4:01:02:93:12:D9:D6:01:A9:83:DC:03:73:DA:ED:C8:E3:C3:B7
+            X509v3 Extended Key Usage: TLS Web Server Authentication
+            X509v3 Key Usage: Digital Signature, Key Encipherment
+            X509v3 Subject Alternative Name: DNS:server
+    Signature Algorithm: sha256WithRSAEncryption
+         a1:3e:ac:83:0b:e5:5d:ca:36:b7:d0:ab:d0:d9:73:66:d1:62:
+         88:ce:3d:47:9e:08:0b:a0:5b:51:13:fc:7e:d7:6e:17:0e:bd:
+         f5:d9:a9:d9:06:78:52:88:5a:e5:df:d3:32:22:4a:4b:08:6f:
+         b1:22:80:4f:19:d1:5f:9d:b6:5a:17:f7:ad:70:a9:04:00:ff:
+         fe:84:aa:e1:cb:0e:74:c0:1a:75:0b:3e:98:90:1d:22:ba:a4:
+         7a:26:65:7d:d1:3b:5c:45:a1:77:22:ed:b6:6b:18:a3:c4:ee:
+         3e:06:bb:0b:ec:12:ac:16:a5:50:b3:ed:46:43:87:72:fd:75:8c:38
 -----BEGIN CERTIFICATE-----
 MIICVDCCAb2gAwIBAgIQQCbakRgrd5yFagy7ypBT/jANBgkqhkiG9w0BAQsFADAP
 MQ0wCwYDVQQDDARLb2JaMB4XDTIwMDcyMjIyMjM1NVoXDTMwMDcyMDIyMjM1NVow
@@ -1338,10 +1431,11 @@ WantedBy=multi-user.target
 EOF
 systemctl daemon-reload; systemctl enable hysteria-server.service; systemctl start hysteria-server.service
 
+# NAT & Iptables Configuration
 IFACE="$(ip -4 route ls|grep default|grep -Po '(?<=dev )(\S+)'|head -1)"
 cat > /etc/systemd/system/hysteria-nat.service <<EOF
 [Unit]
-Description=Restore NAT rules for Hysteria UDP
+Description=Restore Hysteria UDP NAT rules
 After=network-online.target
 Wants=network-online.target
 Before=hysteria-server.service
@@ -1355,13 +1449,14 @@ WantedBy=multi-user.target
 EOF
 systemctl daemon-reload; systemctl enable hysteria-nat.service; systemctl start hysteria-nat.service
 
+# === HYSTERIA 2 (official core, separate from Hysteria v1) ===
 HYSTERIA2_VER="app/v2.9.3"
 case "$(uname -m)" in
   x86_64|amd64) HYSTERIA2_ASSET="hysteria-linux-amd64" ;;
   i386|i486|i586|i686) HYSTERIA2_ASSET="hysteria-linux-386" ;;
   aarch64|arm64) HYSTERIA2_ASSET="hysteria-linux-arm64" ;;
   armv7l|armv7*) HYSTERIA2_ASSET="hysteria-linux-arm" ;;
-  *) echo "Unsupported architecture for Hysteria 2: $(uname -m)"; exit 1 ;;
+  *) echo "Unsupported Hysteria 2 architecture: $(uname -m)"; exit 1 ;;
 esac
 
 HYSTERIA2_RELEASE_URL="https://github.com/apernet/hysteria/releases/download/${HYSTERIA2_VER}"
@@ -1369,7 +1464,7 @@ hyst2_tmp=$(mktemp -d /tmp/hysteria2-install.XXXXXX) || exit 1
 if ! curl -fL --retry 3 -o "$hyst2_tmp/$HYSTERIA2_ASSET" "$HYSTERIA2_RELEASE_URL/$HYSTERIA2_ASSET" ||
    ! curl -fL --retry 3 -o "$hyst2_tmp/hashes.txt" "$HYSTERIA2_RELEASE_URL/hashes.txt"; then
   rm -rf "$hyst2_tmp"
-  echo "Failed to download Hysteria 2."
+  echo "Hysteria 2 download failed."
   exit 1
 fi
 hyst2_expected=$(awk -v asset="$HYSTERIA2_ASSET" '$2 == asset || $2 == "build/" asset || $2 == "*" asset {print tolower($1); exit}' "$hyst2_tmp/hashes.txt")
@@ -1416,7 +1511,7 @@ chmod 600 /etc/hysteria2/users.txt
 
 cat <<'EOF_HYST2_SERVICE' > /etc/systemd/system/hysteria2-server.service
 [Unit]
-Description=Hysteria 2 Official Server
+Description=Official Hysteria 2 Server
 After=network-online.target
 Wants=network-online.target
 
@@ -1444,10 +1539,11 @@ systemctl daemon-reload
 systemctl enable hysteria2-server.service
 if ! systemctl restart hysteria2-server.service; then
   journalctl -u hysteria2-server -n 50 --no-pager
-  echo "Failed to start Hysteria 2."
+  echo "Hysteria 2 failed to start."
   exit 1
 fi
 
+# Creating startup script
 cat <<'deekayz' > /etc/deekaystartup
 #!/bin/sh
 ln -fs /usr/share/zoneinfo/MyTimeZone /etc/localtime
@@ -1457,6 +1553,8 @@ echo "nameserver DNS1" > /etc/resolv.conf; echo "nameserver DNS2" >> /etc/resolv
 mkdir -p /var/run/sslh; touch /var/run/sslh/sslh.pid; chmod 777 /var/run/sslh/sslh.pid
 iptables -C INPUT -p udp --dport 53 -j ACCEPT 2>/dev/null || iptables -I INPUT -p udp --dport 53 -j ACCEPT
 
+# Keep Hysteria 2 out of the broad Hysteria 1 DNAT range.
+# This exemption must remain ahead of all range/catch-all DNAT rules.
 iptables -t nat -C PREROUTING -p udp --dport 36713 -j ACCEPT 2>/dev/null || iptables -t nat -I PREROUTING 1 -p udp --dport 36713 -j ACCEPT
 iptables -C INPUT -p udp --dport 36713 -j ACCEPT 2>/dev/null || iptables -I INPUT -p udp --dport 36713 -j ACCEPT
 
@@ -1481,6 +1579,7 @@ WantedBy=multi-user.target
 deekayx
 chmod +x /etc/deekaystartup; systemctl enable deekaystartup
 
+# BadVPN Binary (Provides 127.0.0.1:7300 upstream for UDP Custom)
 if [ "$(getconf LONG_BIT)" == "64" ]; then
  wget -q -O /usr/bin/badvpn-udpgw "https://www.dropbox.com/s/jo6qznzwbsf1xhi/badvpn-udpgw64"
 else
@@ -1500,6 +1599,7 @@ WantedBy=multi-user.target
 deekayb
 systemctl enable badvpn; systemctl start badvpn
 
+# === UDP CUSTOM (Port 36717) ===
 echo "Installing UDP Custom..."
 mkdir -p /root/udp
 wget -q -O /root/udp/udp-custom "https://raw.githubusercontent.com/mahpud896/UDP-Custom/main/bin/udp-custom-linux-amd64" || true
@@ -1525,6 +1625,7 @@ WantedBy=multi-user.target
 EOF
 systemctl daemon-reload; systemctl enable udp-custom; systemctl start udp-custom 2>/dev/null || true
 
+# === ZIVPN (Port 5667) ===
 echo "Installing ZiVPN..."
 mkdir -p /etc/zivpn
 wget -q -O /usr/local/bin/zivpn "https://github.com/zahidbd2/udp-zivpn/releases/download/udp-zivpn_1.4.9/udp-zivpn-linux-amd64" || true
@@ -1550,7 +1651,7 @@ echo "$PASSWORD $(date -d "+365 days" +"%Y-%m-%d")" > /etc/zivpn/users.txt
 
 cat > /etc/systemd/system/zivpn.service <<EOF
 [Unit]
-Description=ZiVPN Server
+Description=zivpn VPN Server
 After=network.target
 [Service]
 Type=simple
@@ -1570,7 +1671,7 @@ EOF
 
 cat > /etc/systemd/system/zivpn-nat.service <<EOF
 [Unit]
-Description=Restore NAT rules for ZiVPN UDP
+Description=Restore ZiVPN UDP NAT rules
 After=network-online.target
 Wants=network-online.target
 Before=zivpn.service
@@ -1585,14 +1686,13 @@ EOF
 systemctl daemon-reload; systemctl enable zivpn.service; systemctl start zivpn.service 2>/dev/null || true
 systemctl enable zivpn-nat.service; systemctl start zivpn-nat.service 2>/dev/null || true
 
+# VNSTAT INITIALIZATION
 IFACE="$(ip -4 route ls|grep default|grep -Po '(?<=dev )(\S+)'|head -1)"
 vnstat -u -i "$IFACE" 2>/dev/null || true
 systemctl enable vnstat
 systemctl restart vnstat
 
-# ============================================================
-# 🚀 MENU - INTERNET KINGDOM EDITION (Full English)
-# ============================================================
+# MENU CREATION - FULL AND UNCOMPRESSED
 mkdir -p /usr/local/bin
 cat > /usr/local/bin/menu <<'EOF_MENU'
 #!/bin/bash
@@ -1610,6 +1710,7 @@ cat > /usr/local/bin/menu <<'EOF_MENU'
 # ═══════════════════════════════════════════════════════════════════
 #
 
+# Detect if active certificate is real (Let's Encrypt) or self-signed
 if [ -f /etc/xray/cert_type ] && grep -q "letsencrypt" /etc/xray/cert_type; then
     XRAY_INSECURE="0"
 else
@@ -1621,6 +1722,7 @@ else
     INSECURE_PARAM=""
 fi
 
+# Modern Color Palette
 RED='\033[1;31m'
 GREEN='\033[1;32m'
 YELLOW='\033[1;33m'
@@ -1628,10 +1730,9 @@ BLUE='\033[1;34m'
 CYAN='\033[1;36m'
 MAGENTA='\033[1;35m'
 WHITE='\033[1;37m'
-NC='\033[0m'
+NC='\033[0m' # No Color
 BOLD='\033[1m'
 PURPLE='\033[1;35m'
-ORANGE='\033[38;5;208m'
 GOLD='\033[38;5;220m'
 
 DOMAIN=$(cat /etc/deekayvpn/domain.txt 2>/dev/null || curl -4 -s --max-time 2 ipv4.icanhazip.com)
@@ -1650,6 +1751,7 @@ SSH_LIMIT_DB="/etc/deekayvpn/ssh_limits.txt"
 mkdir -p /etc/deekayvpn 2>/dev/null || true
 touch "$SSH_LIMIT_DB" 2>/dev/null || true
 
+# --- Utility Functions ---
 server_ip() { curl -4 -s --max-time 2 ipv4.icanhazip.com 2>/dev/null || hostname -I | awk '{print $1}'; }
 cpu_count() { nproc 2>/dev/null || echo "1"; }
 mem_stats() { free -h 2>/dev/null | awk '/Mem:/ {print $2 "|" $7 "|" $3}'; }
@@ -1662,53 +1764,1296 @@ server_status() {
   for s in ssh stunnel4 squid nginx server-sldns hysteria-server hysteria2-server ws-proxy@10080 xray slipstream danted dnsdist; do
     systemctl is-active --quiet "$s" 2>/dev/null && ok=$((ok+1))
   done
-  [ "$ok" -ge 4 ] && echo -e "${GREEN}Connected${NC}" || echo -e "${RED}Issues Detected${NC}"
+  [ "$ok" -ge 4 ] && echo -e "${GREEN}ONLINE${NC}" || echo -e "${RED}PROBLEMS DETECTED${NC}"
 }
-pause_return() { echo; read -rp "Press Enter to return... " _; }
+pause_return() { echo; read -rp "Press ENTER to return... " _; }
 
-# ============================================================
-# 📊 SPEED TEST FUNCTION
-# ============================================================
-speed_test() {
+# --- ZIVPN MANAGEMENT FUNCTIONS ---
+add_zivpn() {
     clear
-    echo -e "${GOLD}══════════════════════════════════════════════════════════════${NC}"
-    echo -e "                    ${BOLD}🚀 SPEED TEST${NC}"
-    echo -e "${GOLD}══════════════════════════════════════════════════════════════${NC}"
-    echo ""
-    echo -e "${YELLOW}Running speed test... Please wait...${NC}"
-    echo ""
-    
-    if command -v speedtest-cli >/dev/null 2>&1; then
-        speedtest-cli --simple
-    else
-        echo -e "${YELLOW}Installing speedtest-cli...${NC}"
-        apt-get install -y speedtest-cli >/dev/null 2>&1
-        speedtest-cli --simple
+    echo -e "${CYAN}══════════════════════════════════════════════════════════════${NC}"
+    echo -e "                 ${BOLD}CREATE ZIVPN USER${NC}"
+    echo -e "${CYAN}══════════════════════════════════════════════════════════════${NC}"
+    read -rp " Enter Password: " new_pass
+
+    if grep -qw "^$new_pass" "$ZIVPN_USER_DB" 2>/dev/null; then
+        echo -e "\n${RED}Error: Password already exists!${NC}"
+        pause_return; return
     fi
-    
-    echo ""
-    echo -e "${CYAN}──────────────────────────────────────────────────────────────${NC}"
-    echo -e "${GREEN}✅ Speed test completed!${NC}"
+    read -rp " Expiry (Days): " days
+    if ! [[ "$days" =~ ^[0-9]+$ ]]; then echo -e "${RED}Invalid Number.${NC}"; pause_return; return; fi
+    exp_date=$(date -d "+${days} days" +"%Y-%m-%d")
+
+    jq ".auth.config += [\"$new_pass\"]" "$ZIVPN_CONFIG" > /tmp/z.json && mv /tmp/z.json "$ZIVPN_CONFIG"
+    echo "$new_pass $exp_date" >> "$ZIVPN_USER_DB"
+    systemctl restart zivpn.service
+
+    OBFS_VAL=$(jq -r '.obfs' "$ZIVPN_CONFIG" 2>/dev/null || echo "hu\`\`hqb\`c")
+
+    echo -e "\n${GREEN}✔ User created successfully!${NC}"
+    echo -e "${CYAN}--------------------------------------------------------------${NC}"
+    echo -e " ${BOLD}IP:${NC}          ${YELLOW}$(server_ip)${NC}"
+    echo -e " ${BOLD}Domain:${NC}      ${YELLOW}${DOMAIN:-$(server_ip)}${NC}"
+    echo -e " ${BOLD}Port Range:${NC}  ${YELLOW}6000-19999${NC}"
+    echo -e " ${BOLD}User (Password):${NC} ${YELLOW}${new_pass}${NC}"
+    echo -e " ${BOLD}Expiry Date:${NC} ${YELLOW}${exp_date}${NC}"
+    echo -e "${CYAN}--------------------------------------------------------------${NC}"
     pause_return
 }
 
-# ============================================================
-# 📋 ALL FUNCTIONS PRESERVED (add_zivpn, add_hysteria, add_xray, etc.)
-# ============================================================
+del_zivpn() {
+    clear
+    echo -e "${RED}══════════════════════════════════════════════════════════════${NC}"
+    echo -e "                 ${BOLD}DELETE ZIVPN USER${NC}"
+    echo -e "${RED}══════════════════════════════════════════════════════════════${NC}"
+    if [ ! -s "$ZIVPN_USER_DB" ]; then echo -e "No Users."; pause_return; return; fi
+    cat -n "$ZIVPN_USER_DB" | awk '{print " ["$1"] User: "$2" | Exp: "$3}'
+    echo ""
+    read -rp " Enter ID number of user to delete: " del_id
+    if ! [[ "$del_id" =~ ^[0-9]+$ ]]; then echo -e "${RED}Invalid ID.${NC}"; pause_return; return; fi
 
-# [All original functions from the previous menu go here - preserved 100%]
-# Including: add_zivpn, del_zivpn, extend_zivpn, list_zivpn,
-# add_hysteria, del_hysteria, extend_hysteria, list_hysteria, speed_hysteria, change_obfs_hysteria,
-# add_hysteria2, del_hysteria2, extend_hysteria2, list_hysteria2, show_hysteria2,
-# add_xray, del_xray, renew_xray, show_xray,
-# create_user, delete_user, extend_user, online_users,
-# service_control_menu, backup_snapshot, restore_snapshot,
-# utilities_menu, advanced_menu, change_domain, change_slowdns, change_slipstream, install_slipstream,
-# change_status, change_banner, remove_script
+    del_pass=$(sed -n "${del_id}p" "$ZIVPN_USER_DB" | awk '{print $1}')
+    if [ -z "$del_pass" ]; then echo -e "${RED}ID not found.${NC}"; pause_return; return; fi
+    jq ".auth.config |= map(select(. != \"$del_pass\"))" "$ZIVPN_CONFIG" > /tmp/z.json && mv /tmp/z.json "$ZIVPN_CONFIG"
+    sed -i "${del_id}d" "$ZIVPN_USER_DB"
+    systemctl restart zivpn.service
+    echo -e "\n${GREEN}✔ User '$del_pass' deleted successfully!${NC}"
+    pause_return
+}
 
-# ============================================================
-# 🎨 DRAW HEADER (Without Ports List)
-# ============================================================
+extend_zivpn() {
+    clear
+      echo -e "${CYAN}══════════════════════════════════════════════════════════════${NC}"
+      echo -e "                 ${BOLD}EXTEND ZIVPN USER${NC}"
+    echo -e "${CYAN}══════════════════════════════════════════════════════════════${NC}"
+    if [ ! -s "$ZIVPN_USER_DB" ]; then echo -e "No Users Found."; pause_return; return; fi
+
+    cat -n "$ZIVPN_USER_DB" | awk '{print " ["$1"] User: "$2" | Exp: "$3}'
+    echo ""
+    read -rp " Enter ID number of user to extend: " ext_id
+    if ! [[ "$ext_id" =~ ^[0-9]+$ ]]; then echo -e "${RED}Invalid ID.${NC}"; pause_return; return; fi
+
+    ext_pass=$(sed -n "${ext_id}p" "$ZIVPN_USER_DB" | awk '{print $1}')
+    current_exp=$(sed -n "${ext_id}p" "$ZIVPN_USER_DB" | awk '{print $2}')
+    if [ -z "$ext_pass" ]; then echo -e "${RED}ID Not Found.${NC}"; pause_return; return; fi
+
+    read -rp " Add Expiry (Days): " days
+    if ! [[ "$days" =~ ^[0-9]+$ ]]; then echo -e "${RED}Invalid Number.${NC}"; pause_return; return; fi
+
+    new_exp=$(date -d "$current_exp + $days days" +"%Y-%m-%d")
+    sed -i "${ext_id}s/.*/$ext_pass $new_exp/" "$ZIVPN_USER_DB"
+
+    echo -e "\n${GREEN}✔ User '$ext_pass' Extended Successfully!${NC}\n New Expiry: ${YELLOW}$new_exp${NC}"
+    pause_return
+}
+
+list_zivpn() {
+    clear
+    echo -e "${CYAN}══════════════════════════════════════════════════════════════${NC}"
+    echo -e "                   ${BOLD}ZIVPN USERS LIST${NC}"
+    echo -e "${CYAN}══════════════════════════════════════════════════════════════${NC}"
+    if [ ! -s "$ZIVPN_USER_DB" ]; then echo -e "\n No Active Users.\n"
+    else
+        printf " %-5s | %-25s | %-15s\n" "ID" "PASSWORD" "EXPIRY DATE"
+        echo -e "${CYAN}--------------------------------------------------------------${NC}"
+        cat -n "$ZIVPN_USER_DB" | while read -r num user exp; do
+            printf " [%-3s] | %-25s | %-15s\n" "$num" "$user" "$exp"
+        done
+        echo -e "${CYAN}--------------------------------------------------------------${NC}"
+        echo -e " Total Active Users: ${YELLOW}$(wc -l < "$ZIVPN_USER_DB")${NC}"
+    fi
+    pause_return
+}
+
+
+# --- HYSTERIA MANAGEMENT FUNCTIONS ---
+add_hysteria() {
+    clear
+    echo -e "${CYAN}══════════════════════════════════════════════════════════════${NC}"
+    echo -e "                 ${BOLD}CREATE HYSTERIA USER${NC}"
+    echo -e "${CYAN}══════════════════════════════════════════════════════════════${NC}"
+    read -rp " Enter Password/Auth String: " new_pass
+
+    if grep -qw "^$new_pass" "$HYST_USER_DB" 2>/dev/null || jq -e ".inbounds[0].users[] | select(.auth_str == \"$new_pass\")" "$HYST_CONFIG" >/dev/null; then
+        echo -e "\n${RED}Error: User/password already exists!${NC}"
+        pause_return; return
+    fi
+    read -rp " Expiry (Days): " days
+    if ! [[ "$days" =~ ^[0-9]+$ ]]; then echo -e "${RED}Invalid Number.${NC}"; pause_return; return; fi
+    exp_date=$(date -d "+${days} days" +"%Y-%m-%d")
+
+    jq ".inbounds[0].users += [{\"auth_str\": \"$new_pass\"}]" "$HYST_CONFIG" > /tmp/h.json && mv /tmp/h.json "$HYST_CONFIG"
+    echo "$new_pass $exp_date" >> "$HYST_USER_DB"
+    systemctl restart hysteria-server
+
+    OBFS_VAL=$(jq -r '.inbounds[0].obfs' "$HYST_CONFIG" 2>/dev/null || echo "HexTunnel")
+
+    echo -e "\n${GREEN}✔ User created successfully!${NC}"
+    echo -e "${CYAN}--------------------------------------------------------------${NC}"
+    echo -e " ${BOLD}IP:${NC}          ${YELLOW}$(server_ip)${NC}"
+    echo -e " ${BOLD}Domain:${NC}      ${YELLOW}${DOMAIN:-$(server_ip)}${NC}"
+    echo -e " ${BOLD}Port Range:${NC}  ${YELLOW}20000-50000 (-> 36712)${NC}"
+    echo -e " ${BOLD}User (Password):${NC} ${YELLOW}${new_pass}${NC}"
+    echo -e " ${BOLD}Obfs:${NC}        ${YELLOW}${OBFS_VAL}${NC}"
+    echo -e " ${BOLD}Expiry Date:${NC} ${YELLOW}${exp_date}${NC}"
+    echo -e "${CYAN}--------------------------------------------------------------${NC}"
+    pause_return
+}
+
+del_hysteria() {
+    clear
+    echo -e "${RED}══════════════════════════════════════════════════════════════${NC}"
+    echo -e "                 ${BOLD}DELETE HYSTERIA USER${NC}"
+    echo -e "${RED}══════════════════════════════════════════════════════════════${NC}"
+    if [ ! -s "$HYST_USER_DB" ]; then echo -e "No users found."; pause_return; return; fi
+    cat -n "$HYST_USER_DB" | awk '{print " ["$1"] User: "$2" | Exp: "$3}'
+    echo ""
+    read -rp " Enter ID number of user to delete: " del_id
+    if ! [[ "$del_id" =~ ^[0-9]+$ ]]; then echo -e "${RED}Invalid ID.${NC}"; pause_return; return; fi
+
+    del_pass=$(sed -n "${del_id}p" "$HYST_USER_DB" | awk '{print $1}')
+    if [ -z "$del_pass" ]; then echo -e "${RED}ID not found.${NC}"; pause_return; return; fi
+
+    jq ".inbounds[0].users |= map(select(.auth_str != \"$del_pass\"))" "$HYST_CONFIG" > /tmp/h.json && mv /tmp/h.json "$HYST_CONFIG"
+    sed -i "${del_id}d" "$HYST_USER_DB"
+    systemctl restart hysteria-server
+    echo -e "\n${GREEN}✔ User '$del_pass' deleted successfully!${NC}"
+    pause_return
+}
+
+extend_hysteria() {
+    clear
+    echo -e "${CYAN}══════════════════════════════════════════════════════════════${NC}"
+    echo -e "                 ${BOLD}EXTEND HYSTERIA USER${NC}"
+    echo -e "${CYAN}══════════════════════════════════════════════════════════════${NC}"
+    if [ ! -s "$HYST_USER_DB" ]; then echo -e "No users found."; pause_return; return; fi
+
+    cat -n "$HYST_USER_DB" | awk '{print " ["$1"] User: "$2" | Exp: "$3}'
+    echo ""
+    read -rp " Enter ID number of user to extend: " ext_id
+    if ! [[ "$ext_id" =~ ^[0-9]+$ ]]; then echo -e "${RED}Invalid ID.${NC}"; pause_return; return; fi
+
+    ext_pass=$(sed -n "${ext_id}p" "$HYST_USER_DB" | awk '{print $1}')
+    current_exp=$(sed -n "${ext_id}p" "$HYST_USER_DB" | awk '{print $2}')
+    if [ -z "$ext_pass" ]; then echo -e "${RED}ID not found.${NC}"; pause_return; return; fi
+
+    read -rp " Days to Add: " days
+    if ! [[ "$days" =~ ^[0-9]+$ ]]; then echo -e "${RED}Invalid Number.${NC}"; pause_return; return; fi
+
+    new_exp=$(date -d "$current_exp + $days days" +"%Y-%m-%d")
+    sed -i "${ext_id}s/.*/$ext_pass $new_exp/" "$HYST_USER_DB"
+
+    echo -e "\n${GREEN}✔ User '$ext_pass' extended successfully!${NC}\n New Expiry: ${YELLOW}$new_exp${NC}"
+    pause_return
+}
+
+list_hysteria() {
+    clear
+    echo -e "${CYAN}══════════════════════════════════════════════════════════════${NC}"
+    echo -e "                   ${BOLD}HYSTERIA USERS LIST${NC}"
+    echo -e "${CYAN}══════════════════════════════════════════════════════════════${NC}"
+    if [ ! -s "$HYST_USER_DB" ]; then echo -e "\n No active users found.\n"
+    else
+        printf " %-5s | %-25s | %-15s\n" "ID" "PASSWORD (AUTH STRING)" "EXPIRY DATE"
+        echo -e "${CYAN}--------------------------------------------------------------${NC}"
+        cat -n "$HYST_USER_DB" | while read -r num user exp; do
+            printf " [%-3s] | %-25s | %-15s\n" "$num" "$user" "$exp"
+        done
+        echo -e "${CYAN}--------------------------------------------------------------${NC}"
+        echo -e " Total Active Users: ${YELLOW}$(wc -l < "$HYST_USER_DB")${NC}"
+    fi
+    pause_return
+}
+
+speed_hysteria() {
+    clear
+    echo -e "${CYAN}══════════════════════════════════════════════════════════════${NC}"
+    echo -e "                 ${BOLD}EDIT UPLOAD/DOWNLOAD SPEEDS${NC}"
+    echo -e "${CYAN}══════════════════════════════════════════════════════════════${NC}"
+    current_up=$(jq -r '.inbounds[0].up_mbps' "$HYST_CONFIG" 2>/dev/null || echo "100")
+    current_down=$(jq -r '.inbounds[0].down_mbps' "$HYST_CONFIG" 2>/dev/null || echo "100")
+    echo -e " Current Upload:    ${YELLOW}${current_up} Mbps${NC}"
+    echo -e " Current Download:    ${YELLOW}${current_down} Mbps${NC}\n"
+    read -rp " Enter New Upload Speed (Mbps): " new_up
+    read -rp " Enter New Download Speed (Mbps): " new_down
+    if [[ "$new_up" =~ ^[0-9]+$ ]] && [[ "$new_down" =~ ^[0-9]+$ ]]; then
+        jq ".inbounds[0].up_mbps = $new_up | .inbounds[0].down_mbps = $new_down" "$HYST_CONFIG" > /tmp/h.json && mv /tmp/h.json "$HYST_CONFIG"
+        systemctl restart hysteria-server
+        echo -e "\n${GREEN}✔ Speeds updated successfully!${NC}"
+    else echo -e "\n${RED}Invalid input. Numbers only.${NC}"; fi
+    pause_return
+}
+
+change_obfs_hysteria() {
+    clear
+    echo -e "${CYAN}══════════════════════════════════════════════════════════════${NC}"
+    echo -e "                 ${BOLD}CHANGE HYSTERIA OBFS${NC}"
+    echo -e "${CYAN}══════════════════════════════════════════════════════════════${NC}"
+    current_obfs=$(jq -r '.inbounds[0].obfs' "$HYST_CONFIG" 2>/dev/null || echo "HexTunnel")
+    echo -e " Current Obfs: ${YELLOW}${current_obfs}${NC}\n"
+    read -rp " Enter New Obfs: " new_obfs
+    if [ -n "$new_obfs" ]; then
+        jq ".inbounds[0].obfs = \"$new_obfs\"" "$HYST_CONFIG" > /tmp/h.json && mv /tmp/h.json "$HYST_CONFIG"
+        systemctl restart hysteria-server
+        echo -e "\n${GREEN}✔ Obfs updated to: $new_obfs${NC}"
+    else echo -e "\n${RED}Action cancelled.${NC}"; fi
+    pause_return
+}
+
+# --- HYSTERIA 2 MANAGEMENT FUNCTIONS ---
+print_hysteria2_link() {
+  local user="$1" token="$2" encoded_token encoded_obfs insecure
+  encoded_token=$(jq -nr --arg v "$token" '$v|@uri')
+  encoded_obfs=$(jq -nr --arg v "$(jq -r '.obfs.salamander.password' "$HYST2_CONFIG")" '$v|@uri')
+  insecure="1"
+  echo "hysteria2://${encoded_token}@${DOMAIN}:${HYST2_PORT}?insecure=${insecure}&sni=${DOMAIN}&obfs=salamander&obfs-password=${encoded_obfs}#${user}-HY2"
+}
+
+add_hysteria2() {
+    clear
+    echo -e "${CYAN}══════════════════════════════════════════════════════════════${NC}"
+    echo -e "                 ${BOLD}CREATE HYSTERIA 2 ACCOUNT${NC}"
+    echo -e "${CYAN}══════════════════════════════════════════════════════════════${NC}"
+    read -rp " Username: " user
+    [[ "$user" =~ ^[A-Za-z0-9._-]+$ ]] || { echo -e "\n${RED}Invalid username.${NC}"; pause_return; return; }
+    if awk -v u="$user" '$1 == u {found=1} END {exit !found}' "$HYST2_USER_DB" 2>/dev/null; then
+        echo -e "\n${RED}User already exists.${NC}"; pause_return; return
+    fi
+    read -rp " Expiry (Days): " days
+    [[ "$days" =~ ^[0-9]+$ ]] && [ "$days" -gt 0 ] || { echo -e "\n${RED}Invalid expiry.${NC}"; pause_return; return; }
+
+    read -rp " Use custom token/UUID? (y/N): " custom_token_prompt
+    if [[ "$custom_token_prompt" =~ ^[Yy]$ ]]; then
+        read -rp " Enter custom token/UUID: " token
+        if [[ -z "$token" ]] || [[ "$token" =~ [[:space:]] ]]; then
+            echo -e "\n${RED}Invalid token: cannot be empty or contain spaces.${NC}"; pause_return; return
+        fi
+        if awk -v t="$token" '$2 == t {found=1} END {exit !found}' "$HYST2_USER_DB" 2>/dev/null; then
+            echo -e "\n${RED}That token is already in use by another Hysteria 2 user.${NC}"; pause_return; return
+        fi
+    else
+        token=$(cat /proc/sys/kernel/random/uuid)
+    fi
+
+    exp=$(date -d "+${days} days" +%Y-%m-%d)
+    printf '%s %s %s\n' "$user" "$token" "$exp" >> "$HYST2_USER_DB"
+    chmod 600 "$HYST2_USER_DB"
+    echo -e "\n${GREEN}✔ Hysteria 2 account created.${NC}\nUser: $user\nToken: $token\nExpires: $exp\n"
+    print_hysteria2_link "$user" "$token"
+    pause_return
+}
+
+del_hysteria2() {
+    clear
+    echo -e "${CYAN}══════════════════════════════════════════════════════════════${NC}"
+    echo -e "                 ${BOLD}DELETE HYSTERIA 2 USER${NC}"
+    echo -e "${CYAN}══════════════════════════════════════════════════════════════${NC}"
+    [ -s "$HYST2_USER_DB" ] || { echo "No Hysteria 2 users found."; pause_return; return; }
+    nl -w2 -s'. ' "$HYST2_USER_DB"
+    read -rp " User ID to delete: " id
+    [[ "$id" =~ ^[0-9]+$ ]] || { echo -e "\n${RED}Invalid ID.${NC}"; pause_return; return; }
+    user=$(sed -n "${id}p" "$HYST2_USER_DB" | awk '{print $1}')
+    [ -n "$user" ] || { echo -e "\n${RED}ID not found.${NC}"; pause_return; return; }
+    sed -i "${id}d" "$HYST2_USER_DB"
+    echo -e "\n${GREEN}✔ Hysteria 2 user '$user' deleted.${NC}"
+    pause_return
+}
+
+extend_hysteria2() {
+    clear
+    echo -e "${CYAN}══════════════════════════════════════════════════════════════${NC}"
+    echo -e "                 ${BOLD}EXTEND HYSTERIA 2 USER${NC}"
+    echo -e "${CYAN}══════════════════════════════════════════════════════════════${NC}"
+    [ -s "$HYST2_USER_DB" ] || { echo "No Hysteria 2 users found."; pause_return; return; }
+    nl -w2 -s'. ' "$HYST2_USER_DB"
+    read -rp " User ID to renew: " id
+    [[ "$id" =~ ^[0-9]+$ ]] || { echo -e "\n${RED}Invalid ID.${NC}"; pause_return; return; }
+    line=$(sed -n "${id}p" "$HYST2_USER_DB")
+    user=$(awk '{print $1}' <<< "$line"); token=$(awk '{print $2}' <<< "$line"); old_exp=$(awk '{print $3}' <<< "$line")
+    [ -n "$user" ] || { echo -e "\n${RED}ID not found.${NC}"; pause_return; return; }
+    read -rp " Days to add: " days
+    [[ "$days" =~ ^[0-9]+$ ]] && [ "$days" -gt 0 ] || { echo -e "\n${RED}Invalid expiry.${NC}"; pause_return; return; }
+    base="$old_exp"; [ "$old_exp" \< "$(date +%Y-%m-%d)" ] && base="$(date +%Y-%m-%d)"
+    new_exp=$(date -d "$base +${days} days" +%Y-%m-%d)
+    sed -i "${id}s/.*/$user $token $new_exp/" "$HYST2_USER_DB"
+    echo -e "\n${GREEN}✔ Hysteria 2 user renewed until $new_exp.${NC}"
+    pause_return
+}
+
+list_hysteria2() {
+    clear
+    echo -e "${CYAN}══════════════════════════════════════════════════════════════${NC}"
+    echo -e "                 ${BOLD}HYSTERIA 2 USERS LIST${NC}"
+    echo -e "${CYAN}══════════════════════════════════════════════════════════════${NC}"
+    if [ -s "$HYST2_USER_DB" ]; then nl -w2 -s'. ' "$HYST2_USER_DB"; else echo "No users found."; fi
+    pause_return
+}
+
+show_hysteria2() {
+    clear
+    echo -e "${CYAN}══════════════════════════════════════════════════════════════${NC}"
+    echo -e "                 ${BOLD}HYSTERIA 2 LINK${NC}"
+    echo -e "${CYAN}══════════════════════════════════════════════════════════════${NC}"
+    [ -s "$HYST2_USER_DB" ] || { echo "No Hysteria 2 users found."; pause_return; return; }
+    nl -w2 -s'. ' "$HYST2_USER_DB"
+    read -rp " User ID: " id
+    line=$(sed -n "${id}p" "$HYST2_USER_DB")
+    user=$(awk '{print $1}' <<< "$line"); token=$(awk '{print $2}' <<< "$line")
+    [ -n "$user" ] || { echo -e "\n${RED}ID not found.${NC}"; pause_return; return; }
+    echo
+    print_hysteria2_link "$user" "$token"
+    pause_return
+}
+
+# --- XRAY MANAGEMENT FUNCTIONS ---
+add_xray() {
+  clear
+  echo -e "${CYAN}══════════════════════════════════════════════════════════════${NC}"
+  echo -e "                   ${BOLD}CREATE XRAY ACCOUNT${NC}"
+  echo -e "${CYAN}══════════════════════════════════════════════════════════════${NC}"
+  echo -e " [1] VLESS (TCP, WS, XHTTP, HTTPUpgrade & gRPC)"
+  echo -e " [2] VMESS (TCP, WS, XHTTP, HTTPUpgrade & gRPC)"
+  echo -e " [3] TROJAN (TLS)"
+  echo -e " [4] ALL-IN-ONE (VLESS + VMESS + TROJAN)"
+  read -rp " Select Protocol: " prot
+  read -rp " Username: " user
+
+  if grep -qw "^$user" /etc/xray/vless.txt /etc/xray/vmess.txt /etc/xray/trojan.txt 2>/dev/null; then
+    echo -e "${RED}Username already exists!${NC}"; pause_return; return
+  fi
+
+  read -rp " Expiry (Days): " masa
+  exp=$(date -d "+${masa} days" +"%Y-%m-%d")
+
+  read -rp " Use custom UUID? (y/N): " custom_uuid_prompt
+  if [[ "$custom_uuid_prompt" =~ ^[Yy]$ ]]; then
+    read -rp " Enter custom UUID: " uuid
+  else
+    uuid=$(cat /proc/sys/kernel/random/uuid)
+  fi
+
+  pass="HexTunnel${uuid:0:6}"
+
+  VLESS_TAGS='["vless-tls-dispatcher","vless-tcp-http","vless-plain-public","vless-ws","vless-xhttp","vless-httpupgrade","vless-grpc"]'
+  VMESS_TAGS='["vmess-tcp-http","vmess-ws","vmess-xhttp","vmess-httpupgrade","vmess-grpc"]'
+  TROJAN_TAGS='["trojan-ws"]'
+
+  if [ "$prot" == "1" ]; then
+    jq --arg uuid "$uuid" --arg user "$user" --argjson tags "$VLESS_TAGS" \
+      '(.inbounds[] | select(.tag as $t | $tags | index($t)) | .settings.clients) += [{"id": $uuid, "email": $user}]' \
+      /etc/xray/config.json > /tmp/x.json && mv /tmp/x.json /etc/xray/config.json
+    echo "$user $uuid $exp" >> /etc/xray/vless.txt
+
+    clear
+    echo -e "${GREEN}══════════════════════════════════════════════════════════════${NC}"
+    echo -e "                   ${BOLD}VLESS ACCOUNT CREATED${NC}"
+    echo -e "${GREEN}══════════════════════════════════════════════════════════════${NC}"
+    echo -e "User  : $user\nExpires: $exp"
+  echo -e "\n${YELLOW}[ VLESS TLS / SHARED PORT 443 ]${NC}\n"
+  echo -e "TCP HTTP:  vless://${uuid}@${DOMAIN}:443?type=tcp&headerType=http&security=tls&encryption=none&host=${DOMAIN}&path=%2Fvless-tcp&sni=${DOMAIN}${INSECURE_PARAM}#${user}-VLESS-TCP\n"
+  echo -e "WS:        vless://${uuid}@${DOMAIN}:443?type=ws&security=tls&encryption=none&path=%2Fvless&host=${DOMAIN}&sni=${DOMAIN}${INSECURE_PARAM}#${user}-VLESS-WS\n"
+  echo -e "XHTTP:     vless://${uuid}@${DOMAIN}:443?type=xhttp&security=tls&encryption=none&path=%2Fxhttp&host=${DOMAIN}&sni=${DOMAIN}${INSECURE_PARAM}&mode=auto&alpn=h2%2Chttp%2F1.1#${user}-VLESS-XHTTP\n"
+  echo -e "HTTPUp:    vless://${uuid}@${DOMAIN}:443?type=httpupgrade&security=tls&encryption=none&path=%2Fhttpupgrade&host=${DOMAIN}&sni=${DOMAIN}${INSECURE_PARAM}#${user}-VLESS-HTTPUp\n"
+  echo -e "gRPC:      vless://${uuid}@${DOMAIN}:443?type=grpc&security=tls&encryption=none&serviceName=grpc-svc&sni=${DOMAIN}${INSECURE_PARAM}&alpn=h2#${user}-VLESS-gRPC\n"
+
+  echo -e "${YELLOW}[ VLESS NTLS (80/8080/8880) ]${NC}\n"
+  echo -e "TCP: vless://${uuid}@${DOMAIN}:80?type=tcp&headerType=http&security=none&encryption=none&path=%2Fvless-tcp&host=${DOMAIN}#${user}-VLESS-NTLS-TCP\n"
+  echo -e "WS:  vless://${uuid}@${DOMAIN}:80?type=ws&security=none&encryption=none&path=%2Fvless&host=${DOMAIN}#${user}-VLESS-NTLS-WS\n"
+  echo -e "HUP: vless://${uuid}@${DOMAIN}:80?type=httpupgrade&security=none&encryption=none&path=%2Fhttpupgrade&host=${DOMAIN}#${user}-VLESS-NTLS-HTTPUp\n"
+    echo -e "${GREEN}══════════════════════════════════════════════════════════════${NC}"
+
+  elif [ "$prot" == "2" ]; then
+    jq --arg uuid "$uuid" --arg user "$user" --argjson tags "$VMESS_TAGS" \
+      '(.inbounds[] | select(.tag as $t | $tags | index($t)) | .settings.clients) += [{"id": $uuid, "alterId": 0, "email": $user}]' \
+      /etc/xray/config.json > /tmp/x.json && mv /tmp/x.json /etc/xray/config.json
+    echo "$user $uuid $exp" >> /etc/xray/vmess.txt
+
+    clear
+    echo -e "${GREEN}══════════════════════════════════════════════════════════════${NC}"
+    echo -e "                   ${BOLD}VMESS ACCOUNT CREATED${NC}"
+    echo -e "${GREEN}══════════════════════════════════════════════════════════════${NC}"
+    echo -e "User: $user\nExpires: $exp"
+      echo -e "\n${YELLOW}[ VMESS TLS / PORT 443 ]${NC}"
+VMESS_TCP_JSON="{\"v\":\"2\",\"ps\":\"${user}-TLS-TCP\",\"add\":\"${DOMAIN}\",\"port\":\"443\",\"id\":\"${uuid}\",\"aid\":\"0\",\"net\":\"tcp\",\"type\":\"http\",\"host\":\"${DOMAIN}\",\"path\":\"/vmess-tcp\",\"tls\":\"tls\",\"sni\":\"${DOMAIN}\"}"
+echo -e "TCP:        vmess://$(echo -n "$VMESS_TCP_JSON" | base64 -w 0)"
+VMESS_WS_JSON="{\"v\":\"2\",\"ps\":\"${user}-TLS-WS\",\"add\":\"${DOMAIN}\",\"port\":\"443\",\"id\":\"${uuid}\",\"aid\":\"0\",\"net\":\"ws\",\"type\":\"none\",\"host\":\"${DOMAIN}\",\"path\":\"/vmess\",\"tls\":\"tls\",\"sni\":\"${DOMAIN}\"}"
+echo -e "WS:         vmess://$(echo -n "$VMESS_WS_JSON" | base64 -w 0)"
+VMESS_XHTTP_JSON="{\"v\":\"2\",\"ps\":\"${user}-TLS-XHTTP\",\"add\":\"${DOMAIN}\",\"port\":\"443\",\"id\":\"${uuid}\",\"aid\":\"0\",\"net\":\"xhttp\",\"type\":\"none\",\"host\":\"${DOMAIN}\",\"path\":\"/vmess-xhttp\",\"tls\":\"tls\",\"sni\":\"${DOMAIN}\"}"
+echo -e "XHTTP:      vmess://$(echo -n "$VMESS_XHTTP_JSON" | base64 -w 0)"
+VMESS_HUP_JSON="{\"v\":\"2\",\"ps\":\"${user}-TLS-HUP\",\"add\":\"${DOMAIN}\",\"port\":\"443\",\"id\":\"${uuid}\",\"aid\":\"0\",\"net\":\"httpupgrade\",\"type\":\"none\",\"host\":\"${DOMAIN}\",\"path\":\"/vmess-hup\",\"tls\":\"tls\",\"sni\":\"${DOMAIN}\"}"
+echo -e "HTTPUp:     vmess://$(echo -n "$VMESS_HUP_JSON" | base64 -w 0)"
+VMESS_GRPC_JSON="{\"v\":\"2\",\"ps\":\"${user}-TLS-gRPC\",\"add\":\"${DOMAIN}\",\"port\":\"443\",\"id\":\"${uuid}\",\"aid\":\"0\",\"net\":\"grpc\",\"type\":\"none\",\"host\":\"\",\"path\":\"\",\"serviceName\":\"vmess-grpc-svc\",\"tls\":\"tls\",\"sni\":\"${DOMAIN}\"}"
+echo -e "gRPC:       vmess://$(echo -n "$VMESS_GRPC_JSON" | base64 -w 0)"
+echo -e "\n${YELLOW}[ VMESS NTLS / PORT 80 ]${NC}"
+VMESS_NTCP_JSON="{\"v\":\"2\",\"ps\":\"${user}-NTLS-TCP\",\"add\":\"${DOMAIN}\",\"port\":\"80\",\"id\":\"${uuid}\",\"aid\":\"0\",\"net\":\"tcp\",\"type\":\"http\",\"host\":\"${DOMAIN}\",\"path\":\"/vmess-tcp\",\"tls\":\"\"}"
+echo -e "TCP:        vmess://$(echo -n "$VMESS_NTCP_JSON" | base64 -w 0)"
+VMESS_NWS_JSON="{\"v\":\"2\",\"ps\":\"${user}-NTLS-WS\",\"add\":\"${DOMAIN}\",\"port\":\"80\",\"id\":\"${uuid}\",\"aid\":\"0\",\"net\":\"ws\",\"type\":\"none\",\"host\":\"${DOMAIN}\",\"path\":\"/vmess\",\"tls\":\"\"}"
+echo -e "WS:         vmess://$(echo -n "$VMESS_NWS_JSON" | base64 -w 0)"
+VMESS_NHUP_JSON="{\"v\":\"2\",\"ps\":\"${user}-NTLS-HUP\",\"add\":\"${DOMAIN}\",\"port\":\"80\",\"id\":\"${uuid}\",\"aid\":\"0\",\"net\":\"httpupgrade\",\"type\":\"none\",\"host\":\"${DOMAIN}\",\"path\":\"/vmess-hup\",\"tls\":\"\"}"
+echo -e "HTTPUp:     vmess://$(echo -n "$VMESS_NHUP_JSON" | base64 -w 0)"
+    echo -e "${GREEN}══════════════════════════════════════════════════════════════${NC}"
+
+  elif [ "$prot" == "3" ]; then
+    jq --arg pass "$pass" --arg user "$user" --argjson tags "$TROJAN_TAGS" \
+      '(.inbounds[] | select(.tag as $t | $tags | index($t)) | .settings.clients) += [{"password": $pass, "email": $user}]' \
+      /etc/xray/config.json > /tmp/x.json && mv /tmp/x.json /etc/xray/config.json
+    echo "$user $pass $exp" >> /etc/xray/trojan.txt
+
+    clear
+    echo -e "${GREEN}══════════════════════════════════════════════════════════════${NC}"
+    echo -e "                   ${BOLD}TROJAN ACCOUNT CREATED${NC}"
+    echo -e "${GREEN}══════════════════════════════════════════════════════════════${NC}"
+    echo -e "User: $user\nPassword: $pass\nExpires: $exp"
+    echo -e "\n${YELLOW}TLS (443):${NC}\ntrojan://${pass}@${DOMAIN}:443?type=ws&security=tls&path=%2Ftrojan&host=${DOMAIN}&sni=${DOMAIN}${INSECURE_PARAM}#${user}"
+    echo -e "${GREEN}══════════════════════════════════════════════════════════════${NC}"
+
+  elif [ "$prot" == "4" ]; then
+    jq --arg uuid "$uuid" --arg pass "$pass" --arg user "$user" \
+      --argjson vtags "$VLESS_TAGS" --argjson mtags "$VMESS_TAGS" --argjson ttags "$TROJAN_TAGS" \
+      '(.inbounds[] | select(.tag as $t | $vtags | index($t)) | .settings.clients) += [{"id": $uuid, "email": $user}]
+       | (.inbounds[] | select(.tag as $t | $mtags | index($t)) | .settings.clients) += [{"id": $uuid, "alterId": 0, "email": $user}]
+       | (.inbounds[] | select(.tag as $t | $ttags | index($t)) | .settings.clients) += [{"password": $pass, "email": $user}]' \
+      /etc/xray/config.json > /tmp/x.json && mv /tmp/x.json /etc/xray/config.json
+
+    echo "$user $uuid $exp" >> /etc/xray/vless.txt
+    echo "$user $uuid $exp" >> /etc/xray/vmess.txt
+    echo "$user $pass $exp" >> /etc/xray/trojan.txt
+
+    clear
+    echo -e "${GREEN}══════════════════════════════════════════════════════════════${NC}"
+    echo -e "               ${BOLD}ALL-IN-ONE ACCOUNT CREATED${NC}"
+    echo -e "${GREEN}══════════════════════════════════════════════════════════════${NC}"
+    echo -e "User: $user\nExpires: $exp"
+    echo -e "${CYAN}--------------------------------------------------------------${NC}"
+
+      echo -e "\n${YELLOW}[ VLESS TLS / SHARED PORT 443 ]${NC}\n"
+  echo -e "TCP HTTP:  vless://${uuid}@${DOMAIN}:443?type=tcp&headerType=http&security=tls&encryption=none&host=${DOMAIN}&path=%2Fvless-tcp&sni=${DOMAIN}${INSECURE_PARAM}#${user}-VLESS-TCP\n"
+  echo -e "WS:        vless://${uuid}@${DOMAIN}:443?type=ws&security=tls&encryption=none&path=%2Fvless&host=${DOMAIN}&sni=${DOMAIN}${INSECURE_PARAM}#${user}-VLESS-WS\n"
+  echo -e "XHTTP:     vless://${uuid}@${DOMAIN}:443?type=xhttp&security=tls&encryption=none&path=%2Fxhttp&host=${DOMAIN}&sni=${DOMAIN}${INSECURE_PARAM}&mode=auto&alpn=h2%2Chttp%2F1.1#${user}-VLESS-XHTTP\n"
+  echo -e "HTTPUp:    vless://${uuid}@${DOMAIN}:443?type=httpupgrade&security=tls&encryption=none&path=%2Fhttpupgrade&host=${DOMAIN}&sni=${DOMAIN}${INSECURE_PARAM}#${user}-VLESS-HTTPUp\n"
+  echo -e "gRPC:      vless://${uuid}@${DOMAIN}:443?type=grpc&security=tls&encryption=none&serviceName=grpc-svc&sni=${DOMAIN}${INSECURE_PARAM}&alpn=h2#${user}-VLESS-gRPC\n"
+
+  echo -e "${YELLOW}[ VLESS NTLS (80/8080/8880) ]${NC}\n"
+  echo -e "TCP: vless://${uuid}@${DOMAIN}:80?type=tcp&headerType=http&security=none&encryption=none&path=%2Fvless-tcp&host=${DOMAIN}#${user}-VLESS-NTLS-TCP\n"
+  echo -e "WS:  vless://${uuid}@${DOMAIN}:80?type=ws&security=none&encryption=none&path=%2Fvless&host=${DOMAIN}#${user}-VLESS-NTLS-WS\n"
+  echo -e "HUP: vless://${uuid}@${DOMAIN}:80?type=httpupgrade&security=none&encryption=none&path=%2Fhttpupgrade&host=${DOMAIN}#${user}-VLESS-NTLS-HTTPUp\n"
+
+  echo -e "\n${YELLOW}[ VMESS TLS / PORT 443 ]${NC}"
+VMESS_TCP_JSON="{\"v\":\"2\",\"ps\":\"${user}-TLS-TCP\",\"add\":\"${DOMAIN}\",\"port\":\"443\",\"id\":\"${uuid}\",\"aid\":\"0\",\"net\":\"tcp\",\"type\":\"http\",\"host\":\"${DOMAIN}\",\"path\":\"/vmess-tcp\",\"tls\":\"tls\",\"sni\":\"${DOMAIN}\"}"
+echo -e "TCP:        vmess://$(echo -n "$VMESS_TCP_JSON" | base64 -w 0)"
+VMESS_WS_JSON="{\"v\":\"2\",\"ps\":\"${user}-TLS-WS\",\"add\":\"${DOMAIN}\",\"port\":\"443\",\"id\":\"${uuid}\",\"aid\":\"0\",\"net\":\"ws\",\"type\":\"none\",\"host\":\"${DOMAIN}\",\"path\":\"/vmess\",\"tls\":\"tls\",\"sni\":\"${DOMAIN}\"}"
+echo -e "WS:         vmess://$(echo -n "$VMESS_WS_JSON" | base64 -w 0)"
+VMESS_XHTTP_JSON="{\"v\":\"2\",\"ps\":\"${user}-TLS-XHTTP\",\"add\":\"${DOMAIN}\",\"port\":\"443\",\"id\":\"${uuid}\",\"aid\":\"0\",\"net\":\"xhttp\",\"type\":\"none\",\"host\":\"${DOMAIN}\",\"path\":\"/vmess-xhttp\",\"tls\":\"tls\",\"sni\":\"${DOMAIN}\"}"
+echo -e "XHTTP:      vmess://$(echo -n "$VMESS_XHTTP_JSON" | base64 -w 0)"
+VMESS_HUP_JSON="{\"v\":\"2\",\"ps\":\"${user}-TLS-HUP\",\"add\":\"${DOMAIN}\",\"port\":\"443\",\"id\":\"${uuid}\",\"aid\":\"0\",\"net\":\"httpupgrade\",\"type\":\"none\",\"host\":\"${DOMAIN}\",\"path\":\"/vmess-hup\",\"tls\":\"tls\",\"sni\":\"${DOMAIN}\"}"
+echo -e "HTTPUp:     vmess://$(echo -n "$VMESS_HUP_JSON" | base64 -w 0)"
+VMESS_GRPC_JSON="{\"v\":\"2\",\"ps\":\"${user}-TLS-gRPC\",\"add\":\"${DOMAIN}\",\"port\":\"443\",\"id\":\"${uuid}\",\"aid\":\"0\",\"net\":\"grpc\",\"type\":\"none\",\"host\":\"\",\"path\":\"\",\"serviceName\":\"vmess-grpc-svc\",\"tls\":\"tls\",\"sni\":\"${DOMAIN}\"}"
+echo -e "gRPC:       vmess://$(echo -n "$VMESS_GRPC_JSON" | base64 -w 0)"
+echo -e "\n${YELLOW}[ VMESS NTLS / PORT 80 ]${NC}"
+VMESS_NTCP_JSON="{\"v\":\"2\",\"ps\":\"${user}-NTLS-TCP\",\"add\":\"${DOMAIN}\",\"port\":\"80\",\"id\":\"${uuid}\",\"aid\":\"0\",\"net\":\"tcp\",\"type\":\"http\",\"host\":\"${DOMAIN}\",\"path\":\"/vmess-tcp\",\"tls\":\"\"}"
+echo -e "TCP:        vmess://$(echo -n "$VMESS_NTCP_JSON" | base64 -w 0)"
+VMESS_NWS_JSON="{\"v\":\"2\",\"ps\":\"${user}-NTLS-WS\",\"add\":\"${DOMAIN}\",\"port\":\"80\",\"id\":\"${uuid}\",\"aid\":\"0\",\"net\":\"ws\",\"type\":\"none\",\"host\":\"${DOMAIN}\",\"path\":\"/vmess\",\"tls\":\"\"}"
+echo -e "WS:         vmess://$(echo -n "$VMESS_NWS_JSON" | base64 -w 0)"
+VMESS_NHUP_JSON="{\"v\":\"2\",\"ps\":\"${user}-NTLS-HUP\",\"add\":\"${DOMAIN}\",\"port\":\"80\",\"id\":\"${uuid}\",\"aid\":\"0\",\"net\":\"httpupgrade\",\"type\":\"none\",\"host\":\"${DOMAIN}\",\"path\":\"/vmess-hup\",\"tls\":\"\"}"
+echo -e "HTTPUp:     vmess://$(echo -n "$VMESS_NHUP_JSON" | base64 -w 0)"
+
+    echo -e "\n${YELLOW}[ TROJAN TLS (443) ]${NC}\ntrojan://${pass}@${DOMAIN}:443?type=ws&security=tls&path=%2Ftrojan&host=${DOMAIN}&sni=${DOMAIN}${INSECURE_PARAM}#${user}"
+    echo -e "${GREEN}══════════════════════════════════════════════════════════════${NC}"
+  fi
+  systemctl restart xray
+  pause_return
+}
+
+del_xray() {
+  clear
+  echo -e "${RED}══════════════════════════════════════════════════════════════${NC}"
+  echo -e "                   ${BOLD}DELETE XRAY ACCOUNT${NC}"
+  echo -e "${RED}══════════════════════════════════════════════════════════════${NC}"
+
+  mapfile -t users < <(cat /etc/xray/*.txt 2>/dev/null | awk '{print $1}' | sort -u)
+
+  if [ ${#users[@]} -eq 0 ]; then
+      echo -e "${YELLOW}No Xray users found.${NC}"; pause_return; return
+  fi
+  for i in "${!users[@]}"; do printf "  [${YELLOW}%02d${NC}] %s\n" $((i+1)) "${users[$i]}"; done
+  echo -e "\n  [${YELLOW}00${NC}] Cancel\n"
+
+  read -rp "  Select user to delete: " idx
+  if [[ "$idx" == "00" || "$idx" == "0" ]]; then return; fi
+  if ! [[ "$idx" =~ ^[0-9]+$ ]] || [ "$idx" -le 0 ] || [ "$idx" -gt "${#users[@]}" ]; then
+      echo -e "${RED}Invalid selection.${NC}"; pause_return; return
+  fi
+
+  user="${users[$((idx-1))]}"
+  jq "(.inbounds[].settings.clients) |= map(select(.email != \"$user\"))" /etc/xray/config.json > /tmp/x.json && mv /tmp/x.json /etc/xray/config.json
+  sed -i "/^$user /d" /etc/xray/vless.txt /etc/xray/vmess.txt /etc/xray/trojan.txt 2>/dev/null
+  systemctl restart xray
+  echo -e "\n${GREEN}✔ User $user deleted successfully.${NC}"
+  pause_return
+}
+
+renew_xray() {
+  clear
+  echo -e "${CYAN}══════════════════════════════════════════════════════════════${NC}"
+  echo -e "                   ${BOLD}RENEW XRAY ACCOUNT${NC}"
+  echo -e "${CYAN}══════════════════════════════════════════════════════════════${NC}"
+  read -rp " Username to renew: " user
+
+  if ! grep -qw "^$user" /etc/xray/vless.txt /etc/xray/vmess.txt /etc/xray/trojan.txt 2>/dev/null; then
+    echo -e "${RED}User not found.${NC}"; pause_return; return
+  fi
+  read -rp " Days to Add: " days
+  for proto in vless vmess trojan; do
+    if grep -qw "^$user" "/etc/xray/${proto}.txt"; then
+      current_exp=$(grep -w "^$user" "/etc/xray/${proto}.txt" | awk '{print $3}')
+      new_exp=$(date -d "$current_exp + $days days" +"%Y-%m-%d")
+      sed -i "s/^$user .* $current_exp/$(grep -w "^$user" "/etc/xray/${proto}.txt" | awk '{print $1 " " $2}') $new_exp/" "/etc/xray/${proto}.txt"
+    fi
+  done
+  echo -e "\n${GREEN}✔ User '$user' renewed successfully.${NC}\nNew Expiry: $new_exp"
+  pause_return
+}
+
+show_xray() {
+  clear
+  echo -e "${CYAN}══════════════════════════════════════════════════════════════${NC}"
+  echo -e "                   ${BOLD}SHOW XRAY CONFIG LINKS${NC}"
+  echo -e "${CYAN}══════════════════════════════════════════════════════════════${NC}"
+  read -rp " Username to view: " user
+  local found=0
+  if grep -qw "^$user" /etc/xray/vless.txt; then
+    uuid=$(grep -w "^$user" /etc/xray/vless.txt | awk '{print $2}')
+    echo -e "${YELLOW}VLESS TLS (443):${NC}\nvless://${uuid}@${DOMAIN}:443?type=ws&security=tls&encryption=none&path=%2Fvless&host=${DOMAIN}&sni=${DOMAIN}${INSECURE_PARAM}#${user}"
+    echo -e "\n${YELLOW}VLESS NTLS (80):${NC}\nvless://${uuid}@${DOMAIN}:80?type=ws&security=none&encryption=none&path=%2Fvless&host=${DOMAIN}#${user}\n"
+    found=1
+  fi
+  if grep -qw "^$user" /etc/xray/vmess.txt; then
+    uuid=$(grep -w "^$user" /etc/xray/vmess.txt | awk '{print $2}')
+    VMESS_TLS_JSON="{\"v\":\"2\",\"ps\":\"${user}-TLS\",\"add\":\"${DOMAIN}\",\"port\":\"443\",\"id\":\"${uuid}\",\"aid\":\"0\",\"net\":\"ws\",\"type\":\"none\",\"host\":\"${DOMAIN}\",\"path\":\"/vmess\",\"tls\":\"tls\",\"sni\":\"${DOMAIN}\"}"
+    echo -e "${YELLOW}VMESS TLS (443):${NC}\nvmess://$(echo -n "$VMESS_TLS_JSON" | base64 -w 0)"
+    VMESS_NTLS_JSON="{\"v\":\"2\",\"ps\":\"${user}-NTLS\",\"add\":\"${DOMAIN}\",\"port\":\"80\",\"id\":\"${uuid}\",\"aid\":\"0\",\"net\":\"ws\",\"type\":\"none\",\"host\":\"${DOMAIN}\",\"path\":\"/vmess\",\"tls\":\"\"}"
+    echo -e "\n${YELLOW}VMESS NTLS (80):${NC}\nvmess://$(echo -n "$VMESS_NTLS_JSON" | base64 -w 0)\n"
+    found=1
+  fi
+  if grep -qw "^$user" /etc/xray/trojan.txt; then
+    pass=$(grep -w "^$user" /etc/xray/trojan.txt | awk '{print $2}')
+    echo -e "${YELLOW}TROJAN TLS (443):${NC}\ntrojan://${pass}@${DOMAIN}:443?type=ws&security=tls&path=%2Ftrojan&host=${DOMAIN}&sni=${DOMAIN}${INSECURE_PARAM}#${user}\n"
+    found=1
+  fi
+  if [ "$found" -eq 0 ]; then echo -e "${RED}User not found in any protocol.${NC}"; fi
+  pause_return
+}
+
+# --- SSH USER FUNCTIONS ---
+list_real_users() { awk -F: '$3 >= 1000 && $1 != "nobody" && $1 != "systemd-network" && $1 != "messagebus" {print $1}' /etc/passwd 2>/dev/null; }
+
+select_user() {
+  local purpose="$1"
+  mapfile -t USERS < <(list_real_users)
+  if [ "${#USERS[@]}" -eq 0 ]; then echo -e "${RED}No active user accounts found.${NC}"; return 1; fi
+  clear
+  echo -e "${CYAN}══════════════════════════════════════════════════════════════${NC}"
+  printf " %-56s \n" "${BOLD}$purpose${NC}"
+  echo -e "${CYAN}══════════════════════════════════════════════════════════════${NC}"
+  for i in "${!USERS[@]}"; do printf "  [${YELLOW}%02d${NC}] %s\n" $((i+1)) "${USERS[$i]}"; done
+  echo -e "\n  [${YELLOW}00${NC}] Back\n"
+  read -rp "  Select account number: " idx
+  [[ "$idx" == "00" || "$idx" == "0" ]] && return 1
+  if ! [[ "$idx" =~ ^[0-9]+$ ]] || [ "$idx" -lt 1 ] || [ "$idx" -gt "${#USERS[@]}" ]; then echo -e "${RED}  Invalid selection.${NC}"; return 1; fi
+  SELECTED_USER="${USERS[$((idx-1))]}"
+  return 0
+}
+
+create_user() {
+  clear
+  echo -e "${CYAN}══════════════════════════════════════════════════════════════${NC}"
+  echo -e "                   ${BOLD}CREATE NEW SSH USER${NC}"
+  echo -e "${CYAN}══════════════════════════════════════════════════════════════${NC}"
+  echo -e "  ${YELLOW}(Type 00 in any field to cancel and return)${NC}\n"
+
+  while true; do
+    read -rp "  Username: " user
+    user="$(echo -n "$user" | sed -e 's/^[[:space:]]*//' -e 's/[[:space:]]*$//')"
+    [ "$user" = "00" ] && return
+    if [ -z "$user" ]; then echo -e "${RED}  Error: Username cannot be empty.${NC}\n"; continue; fi
+    if ! [[ "$user" =~ ^[a-zA-Z_][a-zA-Z0-9_-]{0,31}$ ]]; then echo -e "${RED}  Error: Invalid username (letters/numbers/dashes, no spaces).${NC}\n"; continue; fi
+    if id "$user" >/dev/null 2>&1; then echo -e "${RED}  Error: User '$user' already exists.${NC}\n"; continue; fi
+    break
+  done
+
+  while true; do
+    read -rp "  Password: " pass
+    pass="$(echo -n "$pass" | sed -e 's/^[[:space:]]*//' -e 's/[[:space:]]*$//')"
+    [ "$pass" = "00" ] && return
+    if [ -z "$pass" ]; then echo -e "${RED}  Error: Password cannot be empty.${NC}\n"; continue; fi
+    if [[ "$pass" =~ [[:space:]] ]]; then echo -e "${RED}  Error: Password cannot contain spaces.${NC}\n"; continue; fi
+    break
+  done
+
+  while true; do
+    read -rp "  Expiry (days): " days
+    days="$(echo -n "$days" | sed -e 's/^[[:space:]]*//' -e 's/[[:space:]]*$//')"
+    [ "$days" = "00" ] && return
+    if ! [[ "$days" =~ ^[0-9]+$ ]] || [ "$days" -eq 0 ]; then echo -e "${RED}  Error: Must be a number of days greater than 0.${NC}\n"; continue; fi
+    break
+  done
+
+  while true; do
+    read -rp "  Connection limit (0 = no limit): " conn_limit
+    conn_limit="$(echo -n "$conn_limit" | sed -e 's/^[[:space:]]*//' -e 's/[[:space:]]*$//')"
+    [ "$conn_limit" = "00" ] && return
+    [ -z "$conn_limit" ] && conn_limit=0
+    if ! [[ "$conn_limit" =~ ^[0-9]+$ ]]; then echo -e "${RED}  Error: Must be a number.${NC}\n"; continue; fi
+    break
+  done
+
+  ua_err=$(useradd --badname -e "$(date -d "+$days days" +%Y-%m-%d)" -s /bin/false -M "$user" 2>&1 1>/dev/null)
+  if [ $? -ne 0 ]; then
+    echo -e "\n${RED}  Error: Failed to create user '$user'.${NC}"
+    echo -e "  ${YELLOW}Details:${NC} ${ua_err:-unknown}"
+    echo "$(date '+%F %T') create_user FAILED useradd user=$user :: ${ua_err:-unknown}" >> /var/log/deekayvpn-menu-errors.log
+    pause_return; return
+  fi
+  cp_err=$(echo "$user:$pass" | chpasswd 2>&1 1>/dev/null)
+  if [ $? -ne 0 ]; then
+    echo -e "\n${RED}  Error: Failed to set password. Deleting incomplete account...${NC}"
+    echo -e "  ${YELLOW}Details:${NC} ${cp_err:-unknown}"
+    echo "$(date '+%F %T') create_user FAILED chpasswd user=$user :: ${cp_err:-unknown}" >> /var/log/deekayvpn-menu-errors.log
+    userdel -f "$user" 2>/dev/null
+    pause_return; return
+  fi
+
+  sed -i "/^$user /d" "$SSH_LIMIT_DB" 2>/dev/null
+  if [ "$conn_limit" -gt 0 ]; then echo "$user $conn_limit" >> "$SSH_LIMIT_DB"; fi
+
+  IP=$(curl -s ipv4.icanhazip.com)
+  CURRENT_NS=$(grep 'ExecStart=' /etc/systemd/system/server-sldns.service 2>/dev/null | sed 's/.*server\.key \([^ ]*\) .*/\1/')
+
+  clear
+  echo -e "${GREEN}══════════════════════════════════════════════════════════════${NC}"
+  echo -e "                   ${BOLD}ACCOUNT CREATED SUCCESSFULLY${NC}"
+  echo -e "${GREEN}══════════════════════════════════════════════════════════════${NC}"
+  echo -e "  ${BOLD}Domain/Host${NC}: ${YELLOW}$DOMAIN${NC}"
+  echo -e "  ${BOLD}IP Address${NC} : ${YELLOW}$IP${NC}"
+  echo -e "  ${BOLD}Username${NC}   : ${YELLOW}$user${NC}"
+  echo -e "  ${BOLD}Password${NC}   : ${YELLOW}$pass${NC}"
+  echo -e "  ${BOLD}Expiry${NC}     : ${YELLOW}$(date -d "+$days days" +%Y-%m-%d)${NC}"
+  echo -e "  ${BOLD}Connection Limit${NC}: ${YELLOW}$([ "$conn_limit" -gt 0 ] && echo "$conn_limit" || echo "Unlimited")${NC}"
+  echo -e "${CYAN}--------------------------------------------------------------${NC}"
+  echo -e "  SSH Port   : 22, 299"
+  echo -e "  SSL/TLS    : 443"
+  echo -e "  SSL/WS     : 443"
+  echo -e "  WebSocket  : 80, 8080, 8880, 2082, 2086, 25"
+  echo -e "  SlowDNS/SlipStream (dnsdist): 53"
+  echo -e "  BadVPN     : 7300"
+  echo -e "  UDP Custom : 1-65535"
+  echo -e "${CYAN}--------------------------------------------------------------${NC}"
+  echo -e "  ${BOLD}HTTP Payload     :${NC}"
+  echo -e "  ${YELLOW}GET / HTTP/1.1[crlf]Host: ${DOMAIN}[crlf]Connection: upgrade[crlf]Upgrade: websocket[crlf][crlf]${NC}"
+  echo -e ""
+  echo -e "  ${BOLD}Optimized Payload :${NC}"
+  echo -e "  ${YELLOW}GET / HTTP/1.1[crlf]Host: bug.com[crlf][crlf]PATCH / HTTP/1.1[crlf]Host: ${DOMAIN}[crlf]Connection: upgrade[crlf]Upgrade: websocket[crlf][crlf]${NC}"
+  echo -e "${CYAN}--------------------------------------------------------------${NC}"
+  echo -e "  ${BOLD}SlowDNS NS ${NC}: ${YELLOW}${CURRENT_NS:-Not configured}${NC}"
+  echo -e "  ${BOLD}SlipStream ${NC}: ${YELLOW}${SLIPSTREAM_DOMAIN}${NC}"
+  echo -e "  ${BOLD}DNS PUB KEY${NC}: 7fbd1f8aa0abfe15a7903e837f78aba39cf61d36f183bd604daa2fe4ef3b7b59"
+  echo -e "${GREEN}══════════════════════════════════════════════════════════════${NC}"
+  pause_return
+}
+
+delete_user() {
+  if ! select_user "DELETE SSH USER"; then pause_return; return; fi
+  clear; echo -e "${RED}Warning: You are about to delete user: ${YELLOW}$SELECTED_USER${NC}"
+  read -rp "Are you sure? [y/N]: " ans
+  if [[ "$ans" =~ ^[Yy]$ ]]; then
+    # Force kill all processes owned by the user to free up the account
+    pkill -u "$SELECTED_USER" 2>/dev/null
+
+    # Execute forced deletion
+    if userdel -r -f "$SELECTED_USER" 2>/dev/null || userdel -f "$SELECTED_USER" 2>/dev/null; then
+        sed -i "/^$SELECTED_USER /d" "$SSH_LIMIT_DB" 2>/dev/null
+        echo -e "${GREEN}User $SELECTED_USER has been deleted.${NC}"
+    else
+        echo -e "${RED}Failed to delete $SELECTED_USER. Check for locked files.${NC}"
+    fi
+  fi
+  pause_return
+}
+
+extend_user() {
+  if ! select_user "EXTEND USER EXPIRY"; then pause_return; return; fi
+  clear; echo -e "Extending account of: ${YELLOW}$SELECTED_USER${NC}"
+  read -rp "Enter number of days to add: " days
+  if ! [[ "$days" =~ ^[0-9]+$ ]]; then echo -e "${RED}Invalid number format.${NC}"; pause_return; return; fi
+  current=$(chage -l "$SELECTED_USER" 2>/dev/null | awk -F": " '/Account expires/ {print $2}')
+  if [ "$current" = "never" ] || [ -z "$current" ]; then new_exp=$(date -d "+$days days" +%Y-%m-%d)
+  else new_exp=$(date -d "$current +$days days" +%Y-%m-%d); fi
+  chage -E "$new_exp" "$SELECTED_USER"
+  echo -e "${GREEN}Success!${NC} Account extended.\nNew Expiry Date: ${YELLOW}$new_exp${NC}"
+  pause_return
+}
+
+# --- Monitor ---
+online_users() {
+  clear
+  echo -e "${CYAN}══════════════════════════════════════════════════════════════${NC}"
+  echo -e "               ${BOLD}ACTIVE SESSIONS MONITOR${NC}"
+  echo -e "${CYAN}══════════════════════════════════════════════════════════════${NC}"
+
+  echo -e "${YELLOW}--- LEGACY SSH ---${NC}"
+  declare -A active_ssh
+  mapfile -t USERS < <(awk -F: '$3 >= 1000 && $1 != "nobody" && $1 != "systemd-network" && $1 != "messagebus" {print $1}' /etc/passwd 2>/dev/null)
+
+  for user in "${USERS[@]}"; do
+      ssh_count=$(ps -u "$user" 2>/dev/null | grep -c "sshd")
+      total=$ssh_count
+      if [ "$total" -gt 0 ]; then active_ssh["$user"]=$total; fi
+  done
+
+  if [ "${#active_ssh[@]}" -eq 0 ]; then
+      echo -e "  No legacy SSH users currently authenticated online.\n"
+  else
+    printf "  %-25s %-15s\n" "USERNAME" "ACTIVE SESSIONS"
+    echo -e "${CYAN}  ----------------------------------------------------------${NC}"
+    for user in "${!active_ssh[@]}"; do
+        if [ "${active_ssh[$user]}" -gt 1 ]; then
+            printf "  %-25s ${RED}%-15s (Multi-Login)${NC}\n" "$user" "${active_ssh[$user]}"
+        else
+            printf "  %-25s ${GREEN}%-15s${NC}\n" "$user" "${active_ssh[$user]}"
+        fi
+    done | sort
+    echo
+  fi
+
+  echo -e "${YELLOW}--- XRAY CORE ACTIVE SESSIONS (Recent Unique IPs) ---${NC}"
+  if grep -q '"loglevel": "warning"' /etc/xray/config.json 2>/dev/null; then
+      sed -i 's/"loglevel": "warning"/"loglevel": "info"/g' /etc/xray/config.json
+      systemctl restart xray 2>/dev/null
+      echo -e "  [System Note] Xray logging enabled. Reconnect users to see logs.\n"
+  elif [ -f /var/log/xray/access.log ]; then
+      active_xray=$(tail -n 10000 /var/log/xray/access.log 2>/dev/null | grep "accepted" | awk '{ user=""; for(i=1;i<=NF;i++) if($i=="email:") user=$(i+1); if(user!="") { split($3, a, ":"); print user " " a[1] } }' | sort -u | awk '{print $1}' | uniq -c | sort -nr)
+      if [ -z "$active_xray" ]; then
+          echo -e "  No active Xray users found in recent logs.\n"
+      else
+          printf "  %-15s %-25s\n" "UNIQUE IPs" "USERNAME"
+          echo -e "${CYAN}  ----------------------------------------------------------${NC}"
+          while read -r count username; do
+              if [ -n "$username" ]; then
+                  if [ "$count" -gt 1 ]; then
+                      printf "  ${RED}%-15s${NC} %-25s ${RED}(Multi-IP)${NC}\n" "$count" "$username"
+                  else
+                      printf "  %-15s %-25s\n" "$count" "$username"
+                  fi
+              fi
+          done <<< "$active_xray"
+      fi
+  else echo -e "  Xray access log not found.\n"; fi
+
+  pause_return
+}
+
+# --- Service Controls ---
+restart_service() {
+  local service_name="$1"
+  local display_name="$2"
+  echo -e "Restarting ${display_name}..."
+  systemctl restart $service_name 2>/dev/null || true
+  echo -e "${GREEN}✔ ${display_name} restarted.${NC}"
+}
+
+service_control_menu() {
+  while true; do
+    clear
+    echo -e "${CYAN}══════════════════════════════════════════════════════════════${NC}"
+    echo -e "                   ${BOLD}SERVICE CONTROL${NC}"
+    echo -e "${CYAN}══════════════════════════════════════════════════════════════${NC}"
+    echo -e "  [${YELLOW}01${NC}] Restart All Services"
+    echo -e "  [${YELLOW}02${NC}] Restart SSH"
+    echo -e "  [${YELLOW}03${NC}] Restart Node WebSocket Proxies"
+    echo -e "  [${YELLOW}04${NC}] Restart Stunnel & Xray Core"
+    echo -e "  [${YELLOW}05${NC}] Restart Squid Proxy & Nginx"
+    echo -e "  [${YELLOW}06${NC}] Restart UDP Core (SlowDNS / Hysteria / BadVPN)"
+    echo -e "  [${YELLOW}07${NC}] Restart Multiplexer (dnsdist / Slipstream / Dante)"
+    echo -e "  [${YELLOW}00${NC}] Back\n"
+    read -rp "  Select an option: " opt
+    case "$opt" in
+      1|01) restart_service "ssh stunnel4 sslh squid nginx server-sldns hysteria-server hysteria2-server badvpn ws-proxy@10080 ws-proxy@25 ws-proxy@2082 ws-proxy@2086 xray slipstream danted dnsdist" "All Services"; pause_return ;;
+      2|02) restart_service "ssh" "SSH"; pause_return ;;
+      3|03) restart_service "ws-proxy@10080 ws-proxy@25 ws-proxy@2082 ws-proxy@2086" "Node WebSocket Proxies"; pause_return ;;
+      4|04) restart_service "stunnel4 xray" "Stunnel & Xray Core"; pause_return ;;
+      5|05) restart_service "squid nginx" "Squid Proxy & Nginx"; pause_return ;;
+      6|06) restart_service "server-sldns hysteria-server hysteria2-server badvpn" "UDP Core Services"; pause_return ;;
+      7|07) restart_service "dnsdist slipstream danted" "Multiplexer (dnsdist/Slipstream/Dante)"; pause_return ;;
+      0|00) break ;;
+      *) echo -e "${RED}Invalid option.${NC}"; sleep 1 ;;
+    esac
+  done
+}
+
+# --- Backup & Restore ---
+backup_snapshot() {
+  clear; local out="/root/hextunnel_backup_$(date +%Y%m%d_%H%M%S).tar.gz"
+  echo -e "Packaging server configurations..."
+  tar -czf "$out" /etc/ssh /etc/stunnel /etc/squid /etc/hysteria /etc/hysteria2 /etc/deekayvpn /etc/systemd/system/ws-proxy@.service /etc/xray 2>/dev/null
+  echo -e "\n${GREEN}✔ Backup created successfully!${NC}\nLocation: ${YELLOW}$out${NC}"
+  pause_return
+}
+
+restore_snapshot() {
+  clear
+  echo -e "${CYAN}══════════════════════════════════════════════════════════════${NC}"
+  echo -e "                   ${BOLD}RESTORE CONFIGURATION${NC}"
+  echo -e "${CYAN}══════════════════════════════════════════════════════════════${NC}"
+  shopt -s nullglob
+  backups=(/root/hextunnel_backup_*.tar.gz)
+  if [ ${#backups[@]} -eq 0 ]; then echo -e "${RED}  No backup files found in /root/.${NC}"; pause_return; return; fi
+  echo -e "  Available Backups:\n"
+  for i in "${!backups[@]}"; do printf "  [${YELLOW}%02d${NC}] %s\n" $((i+1)) "$(basename "${backups[$i]}")"; done
+  echo -e "\n  [${YELLOW}00${NC}] Cancel\n"
+  read -rp "  Select backup to restore: " sel
+  if [[ "$sel" == "00" || "$sel" == "0" ]]; then return; fi
+  idx=$((sel-1))
+  if [ -n "${backups[$idx]}" ]; then
+    echo -e "\nRestoring ${YELLOW}$(basename "${backups[$idx]}")${NC}..."
+    tar -xzf "${backups[$idx]}" -C /
+    systemctl daemon-reload; systemctl restart ssh stunnel4 sslh squid nginx server-sldns hysteria-server badvpn ws-proxy@10080 ws-proxy@25 ws-proxy@2082 ws-proxy@2086 xray slipstream danted dnsdist 2>/dev/null || true
+    echo -e "${GREEN}✔ Restore complete!${NC}"
+  else echo -e "${RED}Invalid selection.${NC}"; fi
+  pause_return
+}
+
+# --- System Utilities ---
+utilities_menu() {
+  while true; do
+    clear
+    echo -e "${CYAN}══════════════════════════════════════════════════════════════${NC}"
+    echo -e "                   ${BOLD}SYSTEM UTILITIES${NC}"
+    echo -e "${CYAN}══════════════════════════════════════════════════════════════${NC}"
+    echo -e "  [${YELLOW}1${NC}] Enable Native Kernel BBR (Fast & Silent)"
+    echo -e "  [${YELLOW}2${NC}] Check Netflix & Streaming Unlock (English)"
+    echo -e "  [${YELLOW}0${NC}] Back\n"
+    read -rp "  Select an option: " subopt
+    case "$subopt" in
+      1)
+         echo -e "\nEnabling Native Kernel BBR..."
+         sed -i '/net.core.default_qdisc/d' /etc/sysctl.conf
+         sed -i '/net.ipv4.tcp_congestion_control/d' /etc/sysctl.conf
+         echo "net.core.default_qdisc=fq" >> /etc/sysctl.conf
+         echo "net.ipv4.tcp_congestion_control=bbr" >> /etc/sysctl.conf
+         sysctl -p >/dev/null 2>&1
+         if [[ "$(sysctl net.ipv4.tcp_congestion_control 2>/dev/null)" == *"bbr"* ]]; then echo -e "${GREEN}✔ BBR Enabled Successfully!${NC}"
+         else echo -e "${RED}✖ Failed to enable BBR (kernel may not support it).${NC}"; fi
+         pause_return
+         ;;
+      2)
+         clear
+         echo -e "${YELLOW}Running Regional Restriction Check (English)...${NC}\n"
+         bash <(curl -sL https://raw.githubusercontent.com/lmc999/RegionRestrictionCheck/main/check.sh) -E en
+         echo ""
+         pause_return
+         ;;
+      0) break ;;
+      *) echo -e "${RED}Invalid option.${NC}"; sleep 1 ;;
+    esac
+  done
+}
+
+# --- Domain & DNS Management ---
+change_domain() {
+    clear
+    echo -e "${CYAN}══════════════════════════════════════════════════════════════${NC}"
+    echo -e "                 ${BOLD}CHANGE SERVER DOMAIN${NC}"
+    echo -e "${CYAN}══════════════════════════════════════════════════════════════${NC}"
+    current_dom=$(cat /etc/deekayvpn/domain.txt 2>/dev/null || echo "Not configured")
+    current_cert=$(cat /etc/xray/cert_type 2>/dev/null || echo "unknown")
+    echo -e " Current Domain/IP: ${YELLOW}$current_dom${NC}  (cert: ${YELLOW}$current_cert${NC})\n"
+    read -rp " Enter New Domain or IP: " new_dom
+
+    if [ -z "$new_dom" ]; then echo -e "\n${RED}Action cancelled.${NC}"; pause_return; return; fi
+    if [ "$new_dom" = "$current_dom" ]; then echo -e "\n${RED}Same domain/IP, no changes.${NC}"; pause_return; return; fi
+
+    SERVER_IP=$(curl -4 -s --max-time 2 ipv4.icanhazip.com || hostname -I | awk '{print $1}')
+
+    if [[ "$new_dom" =~ ^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+        echo -e "\n${YELLOW}Generating self-signed certificate for IP $new_dom...${NC}"
+        systemctl stop xray 2>/dev/null || true
+        openssl req -x509 -nodes -days 3650 -newkey rsa:2048 \
+          -keyout /etc/xray/xray.key \
+          -out /etc/xray/xray.crt \
+          -subj "/CN=${new_dom}/O=HexTunnel/C=US"
+        echo "selfsigned" > /etc/xray/cert_type
+        rm -f /etc/cron.d/certbot-renew
+        NEW_CERT_TYPE="selfsigned"
+    else
+        echo -e "\n${YELLOW}Verifying that $new_dom resolves to $SERVER_IP...${NC}"
+        command -v dig >/dev/null 2>&1 || apt-get install -y dnsutils >/dev/null 2>&1
+        DOMAIN_IP=$(dig +short "$new_dom" @8.8.8.8 | tail -1)
+        if [ "$DOMAIN_IP" != "$SERVER_IP" ]; then
+            echo -e "\n${RED}✘ ERROR: $new_dom does not point to $SERVER_IP yet.${NC}"
+            echo -e "  Create/correct the A record in your DNS and try again. Nothing was changed."
+            pause_return; return
+        fi
+        echo -e "${GREEN}Domain verified. Requesting Let's Encrypt certificate...${NC}"
+        command -v certbot >/dev/null 2>&1 || apt-get install -y certbot >/dev/null 2>&1
+        systemctl stop xray 2>/dev/null || true
+        systemctl stop nginx 2>/dev/null || true
+        if ! certbot certonly --standalone --non-interactive --agree-tos --email "admin@${new_dom}" -d "${new_dom}"; then
+            echo -e "\n${RED}✘ Let's Encrypt certificate issuance failed. Domain unchanged.${NC}"
+            systemctl start xray 2>/dev/null || true
+            pause_return; return
+        fi
+        cp "/etc/letsencrypt/live/${new_dom}/fullchain.pem" /etc/xray/xray.crt
+        cp "/etc/letsencrypt/live/${new_dom}/privkey.pem" /etc/xray/xray.key
+        echo "letsencrypt" > /etc/xray/cert_type
+        NEW_CERT_TYPE="letsencrypt"
+
+        mkdir -p /etc/letsencrypt/renewal-hooks/deploy
+        cat <<'EOF_RENEW' > /etc/letsencrypt/renewal-hooks/deploy/hex-tunnel.sh
+#!/bin/bash
+set -e
+for domain in $RENEWED_DOMAINS; do
+    cp /etc/letsencrypt/live/$domain/fullchain.pem /etc/xray/xray.crt
+    cp /etc/letsencrypt/live/$domain/privkey.pem /etc/xray/xray.key
+    cat /etc/letsencrypt/live/$domain/privkey.pem /etc/letsencrypt/live/$domain/fullchain.pem > /etc/stunnel/stunnel.pem
+    chmod 600 /etc/stunnel/stunnel.pem /etc/xray/xray.key
+    chmod 644 /etc/xray/xray.crt
+    systemctl restart xray stunnel4
+    break
+done
+EOF_RENEW
+        chmod +x /etc/letsencrypt/renewal-hooks/deploy/hex-tunnel.sh
+        echo "0 3 * * * root certbot renew --quiet --deploy-hook /etc/letsencrypt/renewal-hooks/deploy/hex-tunnel.sh" > /etc/cron.d/certbot-renew
+    fi
+
+    chmod 644 /etc/xray/xray.crt
+    chmod 600 /etc/xray/xray.key
+    cat /etc/xray/xray.key /etc/xray/xray.crt > /etc/stunnel/stunnel.pem
+    chmod 600 /etc/stunnel/stunnel.pem
+    chown root:root /etc/stunnel/stunnel.pem
+
+    echo "$new_dom" > /etc/deekayvpn/domain.txt
+    DOMAIN="$new_dom"
+
+    systemctl start xray 2>/dev/null || true
+    if ! /usr/local/bin/xray run -test -config /etc/xray/config.json >/dev/null 2>&1; then
+        echo -e "\n${RED}✘ Warning: new certificate failed Xray validation.${NC}"
+    fi
+    systemctl restart xray stunnel4 2>/dev/null || true
+    systemctl restart nginx 2>/dev/null || true
+
+    echo -e "\n${GREEN}✔ Domain updated to: $new_dom${NC}"
+    echo -e "${GREEN}✔ Certificate regenerated (${NEW_CERT_TYPE}) and Xray/Stunnel restarted.${NC}"
+    echo -e "${YELLOW}Note: vless/vmess/trojan links already given to users used the old domain/cert${NC}"
+    echo -e "${YELLOW}Generate new links from Xray menu (option 4, Show Links).${NC}"
+    pause_return
+}
+
+change_slowdns() {
+    clear
+    echo -e "${CYAN}══════════════════════════════════════════════════════════════${NC}"
+    echo -e "               ${BOLD}CHANGE SLOWDNS NAMESERVER${NC}"
+    echo -e "${CYAN}══════════════════════════════════════════════════════════════${NC}"
+    svc_file="/etc/systemd/system/server-sldns.service"
+    if [ ! -f "$svc_file" ]; then echo -e "${RED}SlowDNS service file not found.${NC}"; pause_return; return; fi
+    current_ns=$(grep 'ExecStart=' "$svc_file" | sed 's/.*server\.key \([^ ]*\) .*/\1/')
+    echo -e " Current Nameserver: ${YELLOW}$current_ns${NC}\n"
+    read -rp " Enter New Nameserver (e.g., ns1.domain.com): " new_ns
+    ss_dom=$(cat /etc/deekayvpn/slipstream_domain.txt 2>/dev/null || echo "")
+    if [ -n "$new_ns" ] && [ "$new_ns" = "$ss_dom" ]; then
+        echo -e "\n${RED}✘ That domain is already used by Slipstream. dnsdist routes by domain, they cannot be equal.${NC}"
+        pause_return; return
+    fi
+    if [ -n "$new_ns" ] && [ "$new_ns" != "$current_ns" ]; then
+        sed -i "s/$current_ns/$new_ns/g" "$svc_file"
+        systemctl daemon-reload; systemctl restart server-sldns
+        echo -e "\n${GREEN}✔ SlowDNS Nameserver updated to: $new_ns${NC}"
+    else echo -e "\n${RED}Action cancelled or same NS entered.${NC}"; fi
+    pause_return
+}
+
+change_slipstream() {
+    clear
+    echo -e "${CYAN}══════════════════════════════════════════════════════════════${NC}"
+    echo -e "                     ${BOLD}SLIPSTREAM${NC}"
+    echo -e "${CYAN}══════════════════════════════════════════════════════════════${NC}"
+    svc_file="/etc/systemd/system/slipstream.service"
+    dnsdist_conf="/etc/dnsdist/dnsdist.conf"
+    sldns_svc="/etc/systemd/system/server-sldns.service"
+
+    if [ ! -f "$svc_file" ]; then
+        echo -e " SlipStream is not installed on this server."
+        read -rp " Do you want to install it now? [y/N]: " ans
+        if ! [[ "$ans" =~ ^[Yy]$ ]]; then echo -e "\n${RED}Cancelled.${NC}"; pause_return; return; fi
+        install_slipstream
+        return
+    fi
+
+    current_dom=$(cat /etc/deekayvpn/slipstream_domain.txt 2>/dev/null || echo "Not configured")
+    echo -e " Current Domain: ${YELLOW}$current_dom${NC}\n"
+    read -rp " Enter New Domain (enter to keep current): " new_dom
+    [ -z "$new_dom" ] && { echo -e "\n${RED}No changes.${NC}"; pause_return; return; }
+    current_ns=$(grep 'ExecStart=' "$sldns_svc" 2>/dev/null | sed 's/.*server\.key \([^ ]*\) .*/\1/')
+    if [ "$new_dom" = "$current_ns" ]; then
+        echo -e "\n${RED}✘ That domain is already used by SlowDNS. dnsdist routes by domain, they cannot be equal.${NC}"
+        pause_return; return
+    fi
+    if [ "$new_dom" != "$current_dom" ]; then
+        sed -i "s/--domain ${current_dom} /--domain ${new_dom} /" "$svc_file"
+        [ -f "$dnsdist_conf" ] && sed -i "s/${current_dom}\./${new_dom}./g" "$dnsdist_conf"
+        echo "$new_dom" > /etc/deekayvpn/slipstream_domain.txt
+        systemctl daemon-reload; systemctl restart slipstream dnsdist
+        echo -e "\n${GREEN}✔ Slipstream domain updated to: $new_dom${NC}"
+    else echo -e "\n${RED}Entered same domain, no changes.${NC}"; fi
+    pause_return
+}
+
+# Installs SlipStream + Dante SOCKS + dnsdist on a server where SlowDNS already runs.
+# Moves SlowDNS from public port 53 to an internal one and puts dnsdist in front as multiplexer.
+install_slipstream() {
+    clear
+    echo -e "${CYAN}══════════════════════════════════════════════════════════════${NC}"
+    echo -e "                 ${BOLD}INSTALL SLIPSTREAM${NC}"
+    echo -e "${CYAN}══════════════════════════════════════════════════════════════${NC}"
+
+    sldns_svc="/etc/systemd/system/server-sldns.service"
+    if [ ! -f "$sldns_svc" ]; then
+        echo -e "${RED}SlowDNS service not found. This server lacks the expected foundation.${NC}"
+        pause_return; return
+    fi
+    current_ns=$(grep 'ExecStart=' "$sldns_svc" | sed 's/.*server\.key \([^ ]*\) .*/\1/')
+
+    SlowDNS_Internal_Port='5301'
+    Slipstream_Internal_Port='5300'
+    SlipstreamSocksPort='1080'
+    SlipstreamInstallDir='/opt/slipstream-rust'
+    SlipstreamPinnedCommit='bc772dd07d9a136dbd7553b0da575526de207847'
+    DnsdistConf='/etc/dnsdist/dnsdist.conf'
+
+    read -rp " Enter domain for SlipStream (e.g., ss.${current_ns}): " -e -i "ss.${current_ns}" SlipstreamDomain
+    while [ "$SlipstreamDomain" = "$current_ns" ]; do
+        echo -e "\n${RED}✘ Cannot be equal to SlowDNS Nameserver ($current_ns).${NC}"
+        read -rp " Enter a different domain for SlipStream: " -e -i "ss.$current_ns" SlipstreamDomain
+    done
+
+    echo -e "\n${GREEN}Installing dependencies...${NC}"
+    command -v danted >/dev/null 2>&1 || apt-get install -y dante-server
+    command -v dnsdist >/dev/null 2>&1 || apt-get install -y dnsdist
+    apt-get install -y cmake pkg-config libssl-dev build-essential git >/dev/null 2>&1
+
+    echo -e "${GREEN}Moving SlowDNS to internal port ${SlowDNS_Internal_Port}...${NC}"
+    sed -i "s|-udp [^ ]* -privkey-file|-udp 127.0.0.1:${SlowDNS_Internal_Port} -privkey-file|" "$sldns_svc"
+    systemctl daemon-reload; systemctl restart server-sldns
+
+    echo -e "${GREEN}Configuring Dante SOCKS...${NC}"
+    EXT_IP="$(ip -4 addr show scope global 2>/dev/null | awk '/inet/{print $2}' | cut -d/ -f1 | head -1)"
+    [ -z "$EXT_IP" ] && EXT_IP="$(curl -s --max-time 5 ifconfig.me 2>/dev/null)"
+    cat > /etc/danted.conf <<DANTE_EOF
+logoutput: syslog
+
+internal: 127.0.0.1 port = ${SlipstreamSocksPort}
+external: ${EXT_IP}
+
+socksmethod: none
+clientmethod: none
+
+client pass {
+    from: 127.0.0.1/32 to: 0.0.0.0/0
+    log: connect disconnect error
+}
+
+socks pass {
+    from: 127.0.0.1/32 to: 0.0.0.0/0
+    protocol: tcp udp
+    log: connect disconnect error
+}
+DANTE_EOF
+    systemctl restart danted; systemctl enable danted >/dev/null 2>&1
+
+    echo -e "${GREEN}Installing Rust (if needed)...${NC}"
+    if ! command -v cargo &>/dev/null; then
+        curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y >/dev/null 2>&1
+        source "$HOME/.cargo/env"
+    else
+        source "$HOME/.cargo/env" 2>/dev/null || true
+    fi
+
+    echo -e "${GREEN}Cloning and building Slipstream (takes a few minutes)...${NC}"
+    if [ -d "$SlipstreamInstallDir/.git" ]; then
+        cd "$SlipstreamInstallDir"
+    else
+        rm -rf "$SlipstreamInstallDir"
+        git clone --quiet https://github.com/Mygod/slipstream-rust.git "$SlipstreamInstallDir"
+        cd "$SlipstreamInstallDir"
+    fi
+    git fetch --quiet origin
+    git checkout --quiet "$SlipstreamPinnedCommit"
+    git submodule update --init --recursive --quiet
+    cargo build --release -p slipstream-server --quiet 2>&1
+    cd /root
+
+    cat > /etc/systemd/system/slipstream.service <<SLIPSTREAM_EOF
+[Unit]
+Description=Slipstream DNS Tunnel Server
+After=network.target danted.service
+
+[Service]
+Type=simple
+ExecStart=${SlipstreamInstallDir}/target/release/slipstream-server \\
+    --dns-listen-port ${Slipstream_Internal_Port} \\
+    --target-address 127.0.0.1:${SlipstreamSocksPort} \\
+    --domain ${SlipstreamDomain} \\
+    --cert ${SlipstreamInstallDir}/cert.pem \\
+    --key ${SlipstreamInstallDir}/key.pem \\
+    --reset-seed ${SlipstreamInstallDir}/reset-seed
+WorkingDirectory=${SlipstreamInstallDir}
+Restart=always
+RestartSec=5
+LimitNOFILE=65535
+
+[Install]
+WantedBy=multi-user.target
+SLIPSTREAM_EOF
+    systemctl daemon-reload; systemctl enable slipstream >/dev/null 2>&1; systemctl restart slipstream
+    echo "$SlipstreamDomain" > /etc/deekayvpn/slipstream_domain.txt
+
+    echo -e "${GREEN}Configuring dnsdist as multiplexer on port 53...${NC}"
+    mkdir -p "$(dirname "$DnsdistConf")"
+    cat > "$DnsdistConf" <<DNSDIST_EOF
+setLocal("0.0.0.0:53")
+
+newServer({address="127.0.0.1:${SlowDNS_Internal_Port}", name="slowdns"})
+newServer({address="127.0.0.1:${Slipstream_Internal_Port}", name="slipstream"})
+
+addAction(SuffixMatchNodeRule("${current_ns}."), PoolAction("slowdns_pool"))
+setPoolServers("slowdns_pool", {getServer(0)})
+
+addAction(SuffixMatchNodeRule("${SlipstreamDomain}."), PoolAction("slipstream_pool"))
+setPoolServers("slipstream_pool", {getServer(1)})
+
+addAction(AllRule(), DropAction())
+DNSDIST_EOF
+    systemctl daemon-reload; systemctl enable dnsdist >/dev/null 2>&1; systemctl restart dnsdist
+
+    if systemctl is-active --quiet slipstream && systemctl is-active --quiet dnsdist && systemctl is-active --quiet danted; then
+        echo -e "\n${GREEN}✔ SlipStream installed and multiplexed with SlowDNS on port 53.${NC}"
+        echo -e "  SlipStream Domain : ${YELLOW}${SlipstreamDomain}${NC}"
+        echo -e "  Internal SOCKS      : 127.0.0.1:${SlipstreamSocksPort}"
+    else
+        echo -e "\n${RED}Something didn't start properly. Check:${NC}"
+        echo -e "  journalctl -u slipstream --no-pager -n 30"
+        echo -e "  journalctl -u dnsdist --no-pager -n 30"
+        echo -e "  journalctl -u danted --no-pager -n 30"
+    fi
+    pause_return
+}
+
+change_status() {
+    clear
+    echo -e "${CYAN}══════════════════════════════════════════════════════════════${NC}"
+    echo -e "             ${BOLD}CHANGE STATUS MESSAGE (WS)${NC}"
+    echo -e "${CYAN}══════════════════════════════════════════════════════════════${NC}"
+    proxy_file="/etc/socksproxy/proxy.js"
+    if [ ! -f "$proxy_file" ]; then echo -e "${RED}proxy.js file not found.${NC}"; pause_return; return; fi
+    line_num=$(grep -n "clientSocket.write('HTTP/1.1 101" "$proxy_file" | head -n1 | cut -d: -f1)
+    if [ -z "$line_num" ]; then echo -e "${RED}Status line not found in proxy.js.${NC}"; pause_return; return; fi
+    current_status=$(sed -n "${line_num}p" "$proxy_file" | sed 's/^[[:space:]]*//')
+    echo -e " Current Line:\n ${YELLOW}${current_status}${NC}\n"
+    echo -e " Write the full message: plain text or HTML"
+    echo -e " (e.g., <font color=\"red\">My Text</font> <b>Extra</b>)."
+    echo -e " Note: do not use single quotes (') inside the message.\n"
+    read -rp " New Status Message: " new_status
+    if [ -n "$new_status" ]; then
+        esc_msg=$(printf '%s' "$new_status" | sed "s/'/’/g")
+        awk -v ln="$line_num" -v msg="$esc_msg" 'NR==ln{printf "            clientSocket.write(%cHTTP/1.1 101 %s\\r\\n\\r\\n%c);\n", 39, msg, 39; next} {print}' "$proxy_file" > "${proxy_file}.tmp" && mv "${proxy_file}.tmp" "$proxy_file"
+        for u in $(systemctl list-units --all --type=service --no-legend 'ws-proxy@*' 2>/dev/null | awk '{print $1}'); do systemctl restart "$u"; done
+        echo -e "\n${GREEN}✔ Status message updated.${NC}"
+    else echo -e "\n${RED}Action cancelled.${NC}"; fi
+    pause_return
+}
+
+change_banner() {
+    clear
+    echo -e "${CYAN}══════════════════════════════════════════════════════════════${NC}"
+    echo -e "                 ${BOLD}EDIT BANNER (SSH / STUNNEL)${NC}"
+    echo -e "${CYAN}══════════════════════════════════════════════════════════════${NC}"
+    echo -e " The banner will be opened in nano for editing."
+    echo -e " Save with ${YELLOW}CTRL+O${NC} + ENTER and exit with ${YELLOW}CTRL+X${NC}.\n"
+    read -rp " Press ENTER to continue or type 0 to cancel: " conf
+    if [ "$conf" = "0" ]; then echo -e "\n${RED}Action cancelled.${NC}"; pause_return; return; fi
+    nano /etc/zorro-luffy
+    systemctl restart ssh stunnel4 2>/dev/null
+    echo -e "\n${GREEN}✔ Banner updated and services restarted.${NC}"
+    pause_return
+}
+
+# --- Advanced / Danger Zone ---
+advanced_menu() {
+  while true; do
+    clear
+    echo -e "${RED}══════════════════════════════════════════════════════════════${NC}"
+    echo -e "                     ${BOLD}ADVANCED CONFIGURATION${NC}"
+    echo -e "${RED}══════════════════════════════════════════════════════════════${NC}"
+    echo -e "  [${YELLOW}01${NC}] View Raw Hysteria JSON"
+    echo -e "  [${YELLOW}02${NC}] View Service Logs (Journalctl)"
+    echo -e "  [${YELLOW}03${NC}] Change Server Domain/IP"
+    echo -e "  [${YELLOW}04${NC}] Change SlowDNS Nameserver (NS)"
+    echo -e "  [${RED}05${NC}] Full Script Uninstall (Dangerous)"
+    echo -e "  [${YELLOW}06${NC}] Change Status Message (WS, HTML/Free Text)"
+    echo -e "  [${YELLOW}07${NC}] Edit Banner (SSH / Stunnel)"
+    echo -e "  [${YELLOW}08${NC}] SlipStream (Install / Change Domain)"
+    echo -e "  [${YELLOW}09${NC}] Restart UDP Core (SlowDNS/Hysteria/ZiVPN/UDP-Custom)"
+    echo -e "  [${YELLOW}00${NC}] Back\n"
+    read -rp "  Select an option: " opt
+    case "$opt" in
+      1|01) clear; cat /etc/hysteria/config.json 2>/dev/null || echo "Not found."; pause_return ;;
+    2|02)
+        clear; echo -e "[1] SSH  [2] WS-Proxies  [3] Hysteria  [4] Stunnel  [5] SlowDNS  [6] Xray  [7] Slipstream  [8] dnsdist (Multiplexer)  [9] Dante SOCKS  [10] Hysteria 2\n"
+        read -rp "Select log: " lopt
+        case "$lopt" in
+          1) journalctl -u ssh -n 50 --no-pager ;;
+          2) journalctl -u ws-proxy@10080 -n 50 --no-pager ;;
+          3) journalctl -u hysteria-server -n 50 --no-pager ;;
+          4) journalctl -u stunnel4 -n 50 --no-pager ;;
+          5) journalctl -u server-sldns -n 50 --no-pager ;;
+          6) journalctl -u xray -n 50 --no-pager ;;
+          7) journalctl -u slipstream -n 50 --no-pager ;;
+          8) journalctl -u dnsdist -n 50 --no-pager ;;
+          9) journalctl -u danted -n 50 --no-pager ;;
+          10) journalctl -u hysteria2-server -n 50 --no-pager ;;
+        esac; pause_return ;;
+      3|03) change_domain ;;
+      4|04) change_slowdns ;;
+      8|08) change_slipstream ;;
+      6|06) change_status ;;
+      7|07) change_banner ;;
+      9|09) restart_service "server-sldns hysteria-server hysteria2-server badvpn udp-custom zivpn" "UDP Core Services"; pause_return ;;
+      5|05) remove_script ;;
+      0|00) break ;;
+    esac
+  done
+}
+
+remove_script() {
+  clear
+  echo -e "${RED}══════════════════════════════════════════════════════════════${NC}"
+  echo -e "                     ${BOLD}FULL UNINSTALL${NC}"
+  echo -e "${RED}══════════════════════════════════════════════════════════════${NC}"
+  read -rp "  Are you absolutely sure? [y/N]: " ans
+  if [[ "$ans" =~ ^[Yy]$ ]]; then
+      echo -e "\nStopping services..."
+      systemctl stop ws-proxy@* server-sldns badvpn hysteria-server hysteria2-server sslh stunnel4 squid nginx xray slipstream danted dnsdist 2>/dev/null || true
+      systemctl disable ws-proxy@* server-sldns badvpn hysteria-server hysteria2-server xray slipstream danted dnsdist 2>/dev/null || true
+      echo "Deleting files..."
+      rm -f /etc/systemd/system/ws-proxy@.service /etc/systemd/system/server-sldns.service /etc/systemd/system/badvpn.service /etc/systemd/system/xray.service /etc/systemd/system/slipstream.service /etc/systemd/system/hysteria2-server.service
+      rm -f /etc/cron.d/service-checker /etc/cron.d/logrotate /etc/cron.d/xray-expiry /etc/cron.d/hysteria-expiry /etc/cron.d/hysteria2-expiry /etc/sysctl.d/99-freenet-tuning.conf /etc/security/limits.d/99-freenet.conf
+      rm -rf /etc/deekayvpn /etc/slowdns /etc/socksproxy /etc/xray /etc/hysteria /etc/hysteria2 /usr/local/bin/hysteria2 /usr/local/libexec/hysteria2-auth /etc/dnsdist /etc/danted.conf /opt/slipstream-rust /usr/local/bin/menu /usr/bin/menu /usr/bin/Menu
+      systemctl daemon-reload; sysctl --system >/dev/null 2>&1 || true
+      echo -e "${GREEN}✔ Full uninstall complete.${NC}"
+  else echo "Cancelled."; fi
+  pause_return
+}
+
+# --- Main Dashboard ---
 draw_header() {
   local os_name=$(. /etc/os-release 2>/dev/null; echo "${ID:-UNKNOWN}" | tr '[:lower:]' '[:upper:]')
   local os_ver=$(. /etc/os-release 2>/dev/null; echo "${VERSION_ID:-}")
@@ -1741,10 +3086,6 @@ draw_header() {
   printf "  ${PURPLE}║${NC}   ${WHITE}%-8s${NC} ${YELLOW}%-18s${NC} ${WHITE}%-8s${NC} ${YELLOW}%-14s${NC} ${WHITE}%-8s${NC} ${YELLOW}%-6s${NC}      ${PURPLE}║${NC}\n" "RAM:" "$ram" "CPU:" "$cpu" "Buffer:" "$buf"
   echo -e "${PURPLE}╚══════════════════════════════════════════════════════════════╝${NC}"
 }
-
-# ============================================================
-# 📋 MAIN MENU - INTERNET KINGDOM EDITION
-# ============================================================
 
 while true; do
   clear; draw_header; echo
@@ -1818,6 +3159,7 @@ chmod +x /usr/local/bin/menu
 cp /usr/local/bin/menu /usr/bin/menu
 cp /usr/local/bin/menu /usr/bin/Menu
 
+# LET'S ENCRYPT RENEWAL HOOK (only if Let's Encrypt was used)
 if [ "$USE_LETSENCRYPT" = true ]; then
     mkdir -p /etc/letsencrypt/renewal-hooks/deploy
     cat <<'EOF_RENEW' > /etc/letsencrypt/renewal-hooks/deploy/hex-tunnel.sh
@@ -1837,6 +3179,7 @@ EOF_RENEW
     echo "0 3 * * * root certbot renew --quiet --deploy-hook /etc/letsencrypt/renewal-hooks/deploy/hex-tunnel.sh" > /etc/cron.d/certbot-renew
 fi
 
+# Finishing
 chown -R www-data:www-data /home/vps/public_html
 clear
 figlet "INTERNET KINGDOM" -c | lolcat
