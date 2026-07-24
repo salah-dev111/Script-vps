@@ -15,6 +15,8 @@ case "$ID:$VERSION_ID" in
   ubuntu:20.04) SUPPORT_LEVEL="legacy" ;;
   ubuntu:22.04) SUPPORT_LEVEL="recommended" ;;
   ubuntu:24.04) SUPPORT_LEVEL="supported" ;;
+  ubuntu:26.04) SUPPORT_LEVEL="supported" ;;
+  ubuntu:28.04) SUPPORT_LEVEL="supported" ;;
   debian:11) SUPPORT_LEVEL="legacy" ;;
   debian:12) SUPPORT_LEVEL="supported" ;;
   *) SUPPORT_LEVEL="unsupported" ;;
@@ -29,6 +31,8 @@ echo "أنظمة التشغيل المدعومة:"
 echo ""
 echo "  ✔ دبيان 12              (موصى به)"
 echo "  ✔ دبيان 11              (دعم قديم)"
+echo "  ✔ أوبونتو 28.04           (مدعوم)"
+echo "  ✔ أوبونتو 26.04           (مدعوم)"
 echo "  ✔ أوبونتو 24.04           (مدعوم)"
 echo "  ✔ أوبونتو 22.04           (موصى به)"
 echo "  ✔ أوبونتو 20.04           (دعم قديم)"
@@ -40,7 +44,7 @@ echo "============================================================"
 sleep 2
 
 if [ "$SUPPORT_LEVEL" = "unsupported" ]; then
-  echo "هذا المثبت يدعم فقط أوبونتو 20.04/22.04/24.04 ودبيان 11/12."
+  echo "هذا المثبت يدعم فقط أوبونتو 20.04/22.04/24.04/26.04/28.04 ودبيان 11/12."
   echo "تم الكشف: ${ID} ${VERSION_ID}"
   exit 1
 fi
@@ -115,7 +119,7 @@ WsPort='10080'
 
 MainPort='666'
 
-read -p "أدخل Nameserver لـ SlowDNS (أو اضغط Enter للافتراضي): " -e -i "ns-miami.hexapps.app" Nameserver
+read -p "أدخل Nameserver لـ SlowDNS (أو اضغط Enter للافتراضي): " -e -i "ns-miami.apps.app" Nameserver
 Serverkey='819d82813183e4be3ca1ad74387e47c0c993b81c601b2d1473a3f47731c404ae'
 Serverpub='7fbd1f8aa0abfe15a7903e837f78aba39cf61d36f183bd604daa2fe4ef3b7b59'
 
@@ -123,7 +127,7 @@ SlowDNS_Internal_Port='5301'
 read -p "هل تريد تثبيت SlipStream (نفق DNS إضافي)؟ [y/N]: " -e -i "N" _install_slipstream
 if [[ "$_install_slipstream" =~ ^[Yy]$ ]]; then
     InstallSlipstream="y"
-    read -p "أدخل الدومين/nameserver لـ SlipStream (أو اضغط Enter للافتراضي): " -e -i "ns2-miami.hexapps.app" SlipstreamDomain
+    read -p "أدخل الدومين/nameserver لـ SlipStream (أو اضغط Enter للافتراضي): " -e -i "" SlipstreamDomain
     while [ "$SlipstreamDomain" = "$Nameserver" ]; do
         echo -e "\n\e[1;31m✘ دومين Slipstream لا يمكن أن يكون مساويًا لـ Nameserver الخاص بـ SlowDNS.\e[0m"
         echo -e "  dnsdist يوزع حسب الدومين؛ إذا تساويا، سيتوقف أحد النفقين عن العمل."
@@ -145,8 +149,8 @@ UDP_PORT=":36712"
 HYST2_PORT="36713"
 UDP_CUSTOM_PORT="36717"
 ZIVPN_PORT="5667"
-_default_obfs='HexTunnel'
-_default_password='HexTunnel'
+_default_obfs='KINGDOM'
+_default_password='KIGDOM'
 
 if [ -t 0 ]; then
   read -e -p "أدخل Hysteria/ZiVPN Obfuscation (obfs) [${_default_obfs}]: " -i "${_default_obfs}" _input_obfs
@@ -1745,7 +1749,7 @@ add_hysteria() {
     echo "$new_pass $exp_date" >> "$HYST_USER_DB"
     systemctl restart hysteria-server
 
-    OBFS_VAL=$(jq -r '.inbounds[0].obfs' "$HYST_CONFIG" 2>/dev/null || echo "HexTunnel")
+    OBFS_VAL=$(jq -r '.inbounds[0].obfs' "$HYST_CONFIG" 2>/dev/null || echo "KINGDOM")
 
     echo -e "\n${GREEN}✔ تم إنشاء المستخدم بنجاح!${NC}"
     echo -e "${CYAN}--------------------------------------------------------------${NC}"
@@ -1848,7 +1852,7 @@ change_obfs_hysteria() {
     echo -e "${CYAN}══════════════════════════════════════════════════════════════${NC}"
     echo -e "                 ${BOLD}تغيير Obfs لـ Hysteria${NC}"
     echo -e "${CYAN}══════════════════════════════════════════════════════════════${NC}"
-    current_obfs=$(jq -r '.inbounds[0].obfs' "$HYST_CONFIG" 2>/dev/null || echo "HexTunnel")
+    current_obfs=$(jq -r '.inbounds[0].obfs' "$HYST_CONFIG" 2>/dev/null || echo "KINGDOM")
     echo -e " Obfs الحالي: ${YELLOW}${current_obfs}${NC}\n"
     read -rp " أدخل Obfs الجديد: " new_obfs
     if [ -n "$new_obfs" ]; then
@@ -1989,7 +1993,7 @@ add_xray() {
     uuid=$(cat /proc/sys/kernel/random/uuid)
   fi
 
-  pass="HexTunnel${uuid:0:6}"
+  pass="KINGDOM${uuid:0:6}"
 
   VLESS_TAGS='["vless-tls-dispatcher","vless-tcp-http","vless-plain-public","vless-ws","vless-xhttp","vless-httpupgrade","vless-grpc"]'
   VMESS_TAGS='["vmess-tcp-http","vmess-ws","vmess-xhttp","vmess-httpupgrade","vmess-grpc"]'
@@ -2443,7 +2447,7 @@ service_control_menu() {
 }
 
 backup_snapshot() {
-  clear; local out="/root/hex_tunnel_backup_$(date +%Y%m%d_%H%M%S).tar.gz"
+  clear; local out="/root/KINGDOM_tunnel_backup_$(date +%Y%m%d_%H%M%S).tar.gz"
   echo -e "جاري ضغط إعدادات الخادم..."
   tar -czf "$out" /etc/ssh /etc/stunnel /etc/squid /etc/hysteria /etc/hysteria2 /etc/deekayvpn /etc/systemd/system/ws-proxy@.service /etc/xray 2>/dev/null
   echo -e "\n${GREEN}✔ تم إنشاء النسخ الاحتياطي بنجاح!${NC}\nالموقع: ${YELLOW}$out${NC}"
@@ -2529,7 +2533,7 @@ change_domain() {
         openssl req -x509 -nodes -days 3650 -newkey rsa:2048 \
           -keyout /etc/xray/xray.key \
           -out /etc/xray/xray.crt \
-          -subj "/CN=${new_dom}/O=HexTunnel/C=US"
+          -subj "/CN=${new_dom}/O=KINGDOM/C=US"
         echo "selfsigned" > /etc/xray/cert_type
         rm -f /etc/cron.d/certbot-renew
         NEW_CERT_TYPE="selfsigned"
@@ -2913,7 +2917,7 @@ draw_header() {
   local buf=$(buffer_mem)
 
   echo -e "${BLUE}══════════════════════════════════════════════════════════════${NC}"
-  echo -e "${BLUE}       >>>>>  🐉  ${YELLOW}${BOLD}Hex Auto${NC}${BLUE}  ✸  ${YELLOW}${BOLD}بواسطة JotchuaDevz${NC}${BLUE}  🐉  <<<<<${NC}"
+  echo -e "${BLUE}       >>>>>  🐉  ${YELLOW}${BOLD}KINDOM TUNNEL${NC}${BLUE}  ✸  ${YELLOW}${BOLD}بواسطة BILAL ACON SINKO${NC}${BLUE}  🐉  <<<<<${NC}"
   echo -e "${BLUE}══════════════════════════════════════════════════════════════${NC}"
   printf "  ${WHITE}%-5s${NC} ${YELLOW}%-17s${NC} ${WHITE}%-6s${NC} ${YELLOW}%-14s${NC} ${WHITE}%-7s${NC} ${YELLOW}%s${NC}\n" "نظام:" "$os" "معمار:" "$arch" "أنوية:" "$cores"
   printf "  ${WHITE}%-5s${NC} ${YELLOW}%-17s${NC} ${WHITE}%-6s${NC} ${YELLOW}%-14s${NC} ${WHITE}%-7s${NC} %s\n" "IP:" "$ip" "وقت:" "$time" "الحالة:" "$status"
@@ -3017,7 +3021,7 @@ fi
 
 chown -R www-data:www-data /home/vps/public_html
 clear
-figlet Hex Auto Script By JotchuaDevz -c | lolcat
+figlet  Auto Script By KINGDOM -c | lolcat
 echo "       تم التثبيت بنجاح! يحتاج النظام إلى إعادة تشغيل لتطبيق جميع التغييرات!"
 history -c; rm /root/full.sh 2>/dev/null || true
 echo "           سيتم إعادة تشغيل الخادم خلال 10 ثوانٍ!"
