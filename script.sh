@@ -1,7 +1,42 @@
 #!/bin/bash
+#
+# ═══════════════════════════════════════════════════════════════════
+#  ██╗███╗   ██╗████████╗███████╗██████╗ ███╗   ██╗███████╗████████╗
+#  ██║████╗  ██║╚══██╔══╝██╔════╝██╔══██╗████╗  ██║██╔════╝╚══██╔══╝
+#  ██║██╔██╗ ██║   ██║   █████╗  ██████╔╝██╔██╗ ██║███████╗   ██║   
+#  ██║██║╚██╗██║   ██║   ██╔══╝  ██╔══██╗██║╚██╗██║╚════██║   ██║   
+#  ██║██║ ╚████║   ██║   ███████╗██║  ██║██║ ╚████║███████║   ██║   
+#  ╚═╝╚═╝  ╚═══╝   ╚═╝   ╚══════╝╚═╝  ╚═╝╚═╝  ╚═══╝╚══════╝   ╚═╝   
+# ═══════════════════════════════════════════════════════════════════
+#                 INTERNET KINGDOM - VPN SERVICE
+#               Support: https://t.me/FreeinternetTM
+# ═══════════════════════════════════════════════════════════════════
+#
+# Copyright (c) 2026 INTERNET KINGDOM. All rights reserved.
+#
+set -o pipefail
 clear
-sleep 1
 
+export DEBIAN_FRONTEND=noninteractive
+source /etc/os-release
+
+# ============================================================
+# 📊 OS SUPPORT CHECK
+# ============================================================
+SUPPORT_LEVEL="unsupported"
+case "$ID:$VERSION_ID" in
+  ubuntu:20.04) SUPPORT_LEVEL="legacy" ;;
+  ubuntu:22.04) SUPPORT_LEVEL="recommended" ;;
+  ubuntu:24.04) SUPPORT_LEVEL="supported" ;;
+  debian:11) SUPPORT_LEVEL="legacy" ;;
+  debian:12) SUPPORT_LEVEL="supported" ;;
+  rocky:9.*) SUPPORT_LEVEL="supported" ;;
+  *) SUPPORT_LEVEL="unsupported" ;;
+esac
+
+# ============================================================
+# 🎨 COLORS
+# ============================================================
 Green="\e[92;1m"
 RED="\033[31m"
 YELLOW="\033[33m"
@@ -18,7 +53,7 @@ green='\e[0;32m'
 green() { echo -e "\\033[32;1m${*}\\033[0m"; }
 red() { echo -e "\\033[31;1m${*}\\033[0m"; }
 export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
-stty erase ^?
+stty erase ^? 2>/dev/null || true
 
 TIMES="10"
 NAMES=$(whoami)
@@ -34,6 +69,9 @@ dateFromServer=$(curl -v --insecure --silent https://google.com/ 2>&1 | grep Dat
 Date_list=$(date +"%Y-No such file or directory-1" -d "$dateFromServer")
 source '/etc/os-release'
 
+# ============================================================
+# 📋 LOGO
+# ============================================================
 logo() {
     echo -e ""
     echo -e "    ┌───────────────────────────────────────────────┐"
@@ -41,10 +79,9 @@ logo() {
     echo -e " ───│    $Green┌─┐┬ ┬┌┬┐┌─┐┌─┐┌─┐┬─┐┬┌─┐┌┬┐  ┬  ┬┌┬┐┌─┐$NC   │───"
     echo -e " ───│    $Green├─┤│ │ │ │ │└─┐│  ├┬┘│├─┘ │   │  │ │ ├┤ $NC   │───"
     echo -e " ───│    $Green┴ ┴└─┘ ┴ └─┘└─┘└─┘┴└─┴┴   ┴   ┴─┘┴ ┴ └─┘$NC   │───"
-    echo -e "    │    ${YELLOW}Copyright${FONT} (C)${GRAY}https://t.me/aytou0$NC     │"
+    echo -e "    │    ${YELLOW}Copyright${FONT} (C)${GRAY}https://t.me/FreeinternetTM$NC     │"
     echo -e "    └───────────────────────────────────────────────┘"
     echo -e "        "
-
 }
 
 cd "$(
@@ -80,7 +117,7 @@ function is_root() {
 
 msg() {
     if [[ 0 -eq $? ]]; then
-        print_ok "$1 Complete... ${YELLOW}Rencong Tunnel${FONT}"
+        print_ok "$1 Complete... ${YELLOW}INTERNET KINGDOM${FONT}"
         sleep 1
     fi
 }
@@ -94,6 +131,9 @@ check_vz() {
 
 REPO="https://ssc.nexajs.com/"
 
+# ============================================================
+# 📁 MAKE XRAY FOLDERS
+# ============================================================
 function make_folder_xray() {
     rm -rf /etc/vmess/.vmess.db
     rm -rf /etc/vless/.vless.db
@@ -126,6 +166,9 @@ function make_folder_xray() {
     echo "& plughin Account" >>/etc/ssh/.ssh.db
 }
 
+# ============================================================
+# 🌐 DOMAIN SETUP
+# ============================================================
 function add_domain() {
     read -p "Input Domain :  " domain
     if [[ ${domain} ]]; then
@@ -143,14 +186,12 @@ function add_domain() {
 }
 
 function check_ubuntu_version() {
-    # Check if OS is Ubuntu
     if [[ $(cat /etc/os-release | grep -w ID | head -n1 | sed 's/=//g' | sed 's/"//g' | sed 's/ID//g') != "ubuntu" ]]; then
         echo -e "${RED} Your OS Is Not Ubuntu ( ${YELLOW}$(cat /etc/os-release | grep -w PRETTY_NAME | head -n1 | sed 's/=//g' | sed 's/"//g' | sed 's/PRETTY_NAME//g')${NC} )"
         ask_reinstall
         return 1
     fi
 
-    # Check Ubuntu version
     UBUNTU_VERSION=$(cat /etc/os-release | grep VERSION_ID | cut -d'"' -f2)
     if [[ "$UBUNTU_VERSION" != "20.04" ]]; then
         echo -e "${RED} Your Ubuntu Version Is Not 20.04 ( ${YELLOW}$UBUNTU_VERSION${NC} )"
@@ -179,21 +220,9 @@ function ask_reinstall() {
     fi
 }
 
-function is_root() {
-    if [[ 0 == "$UID" ]]; then
-        print_ok "Root user Start installation process"
-    else
-        print_error "The current user is not the root user, please switch to the root user and run the script again"
-    fi
-}
-
-check_vz() {
-    if [ -f /proc/user_beancounters ]; then
-        msg "OpenVZ VPS is not supported."
-        exit
-    fi
-}
-
+# ============================================================
+# 📦 PACKAGE FUNCTIONS
+# ============================================================
 packagesDebian() {
     print_ok "update repository python"
     apt install python3 python3-pip -y
@@ -257,6 +286,9 @@ updatePackages() {
     fi
 }
 
+# ============================================================
+# 📥 INSTALL DEPENDENCIES
+# ============================================================
 function insDepedency() {
     echo ""
     echo "Please wait to install Package..."
@@ -276,8 +308,10 @@ function insDepedency() {
 
 }
 
+# ============================================================
+# 🔐 SSL CERTIFICATE
+# ============================================================
 function acme() {
-    #    STOPWEBSERVER=$(lsof -i:80 | cut -d' ' -f1 | awk 'NR==2 {print $1}')
     msg "installed successfully SSL certificate generation script"
     rm -rf /root/.acme.sh
     mkdir /root/.acme.sh
@@ -296,6 +330,9 @@ function acme() {
 
 }
 
+# ============================================================
+# 🌐 NGINX
+# ============================================================
 function insNginx() {
     apt clean all && apt update
     ntpdate pool.ntp.org
@@ -303,7 +340,6 @@ function insNginx() {
     apt install curl pwgen chrony socat openssl netcat cron -y
 
     source <(curl -sL ${REPO}utility/bbr)
-    # // Checking System
     if [[ $(cat /etc/os-release | grep -w ID | head -n1 | sed 's/=//g' | sed 's/"//g' | sed 's/ID//g') == "ubuntu" ]]; then
         msg "Setup nginx For OS Is $(cat /etc/os-release | grep -w PRETTY_NAME | head -n1 | sed 's/=//g' | sed 's/"//g' | sed 's/PRETTY_NAME//g')"
         rm -f /etc/apt/sources.list.d/nginx.list
@@ -349,13 +385,15 @@ function confNginx() {
     msg "Configurasi Nginx Berhasil !"
 }
 
-
+# ============================================================
+# ⚖️ HAPROXY
+# ============================================================
 function insHaproxy() {
     wget -O /usr/sbin/haproxy "${REPO}haproxy/haproxy" >/dev/null 2>&1
     chmod +x /usr/sbin/haproxy
 cat >/lib/systemd/system/haproxy.service <<EOF
 [Unit]
-Description=Rencong Tunnel Load Balancer
+Description=INTERNET KINGDOM Load Balancer
 Documentation=https://github.com/firdaus-rx
 After=network-online.target rsyslog.service
 
@@ -375,6 +413,9 @@ EOF
     wget -O /etc/nginx/conf.d/xray.conf "${REPO}nginx/xray" >/dev/null 2>&1
 }
 
+# ============================================================
+# ⚙️ CONFIGURATION
+# ============================================================
 function insConfig() {
     cd
     rm -rf *
@@ -395,23 +436,20 @@ mesg n || true
 menu
 END
 
-    # remove expired
-        cat >/etc/cron.d/xp_all <<-END
+    cat >/etc/cron.d/xp_all <<-END
                 SHELL=/bin/sh
                 PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
                 2 0 * * * root /usr/bin/xp
         END
 
-    # clean log
-        cat >/etc/cron.d/logclean <<-END
+    cat >/etc/cron.d/logclean <<-END
                 SHELL=/bin/sh
                 PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
                 */59 * * * * root /usr/bin/logclean
         END
     chmod 644 /root/.profile
 
-    # auto reboot
-        cat >/etc/cron.d/daily_reboot <<-END
+    cat >/etc/cron.d/daily_reboot <<-END
                 SHELL=/bin/sh
                 PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
                 0 5 * * * root /sbin/reboot
@@ -422,8 +460,7 @@ END
                 5
         END
 
-    # limit ip xray
-        cat >/etc/cron.d/x_limp <<-END
+    cat >/etc/cron.d/x_limp <<-END
                 SHELL=/bin/sh
                 PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
                 */10 * * * * root /usr/bin/xraylimit
@@ -451,10 +488,7 @@ END
                 #!/bin/sh -e
                 # rc.local
                 # By default this script does nothing.
-                #iptables -I INPUT -p udp --dport 5300 -j ACCEPT
-                #iptables -t nat -I PREROUTING -p udp --dport 53 -j REDIRECT --to-ports 5300
                 netfilter-persistent reload
-                #exit 0
         END
     chmod +x /etc/rc.local
 
@@ -468,6 +502,9 @@ END
     fi
 }
 
+# ============================================================
+# 🦑 SQUID
+# ============================================================
 function inSquid() {
     apt install squid -y
 
@@ -478,22 +515,23 @@ function inSquid() {
 
 }
 
+# ============================================================
+# 🔌 WEBSOCKET
+# ============================================================
 function insWs() {
-    # wget -O /usr/bin/ws "${REPO}websocket/ws" >/dev/null 2>&1
-    # chmod +x /usr/bin/ws
-
     wget -O /usr/bin/tun.conf "${REPO}websocket/tun.conf" >/dev/null 2>&1
     chmod 644 /usr/bin/tun.conf
 
     wget -O /usr/bin/ws.py "${REPO}websocket/ws.py" >/dev/null 2>&1
     chmod +x /usr/bin/ws.py
 
-    # wget -O /etc/systemd/system/ws.service "${REPO}websocket/ws.service" >/dev/null 2>&1
     wget -O /etc/systemd/system/ws.service "${REPO}websocket/socks.service" >/dev/null 2>&1
     chmod +x /etc/systemd/system/ws.service
 }
 
-
+# ============================================================
+# ☢️ XRAY CORE
+# ============================================================
 function insXray() {
     msg "Core Xray 1.7.5 Version installed successfully"
     curl -s ipinfo.io/city >>/etc/xray/city
@@ -509,8 +547,8 @@ function insXray() {
     rm -rf /etc/systemd/system/xray.service.d
 cat >/etc/systemd/system/xray.service <<EOF
 [Unit]
-Description=Rencong Tunnel Server Xray
-Documentation=https://t.me/firdaus_rx
+Description=INTERNET KINGDOM Server Xray
+Documentation=https://t.me/FreeinternetTM
 After=network.target nss-lookup.target
 
 [Service]
@@ -531,7 +569,9 @@ EOF
 
 }
 
-
+# ============================================================
+# 🚀 UDP CUSTOM
+# ============================================================
 insUdp() {
     wget -O /usr/bin/udp "${REPO}utility/udp-custom-linux-amd64" >/dev/null 2>&1
 
@@ -576,7 +616,9 @@ EOF
     systemctl restart udp
 }
 
-
+# ============================================================
+# 🔄 RESTART SYSTEM
+# ============================================================
 function restart_system() {
     TIMEZONE=$(date +'%H:%M:%S')
 
@@ -661,8 +703,10 @@ function restart_system() {
     fi
     menu
 }
-# Fungsi Install
 
+# ============================================================
+# 🔧 INSTALL SCRIPT
+# ============================================================
 function install_sc() {
     insDepedency
     acme
@@ -677,6 +721,10 @@ function install_sc() {
     restart_system
 
 }
+
+# ============================================================
+# 🚀 START INSTALLATION
+# ============================================================
 logo
 make_folder_xray
 add_domain
